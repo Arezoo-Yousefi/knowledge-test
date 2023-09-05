@@ -114,3 +114,4 @@ D:\AolccProjects\knowledgeTest\KnowledgeTest\KnowledgeTest\obj\Debug\KnowledgeTe
 D:\AolccProjects\knowledgeTest\KnowledgeTest\KnowledgeTest\obj\Debug\KnowledgeTest.csproj.CopyComplete
 D:\AolccProjects\knowledgeTest\KnowledgeTest\KnowledgeTest\obj\Debug\KnowledgeTest.dll
 D:\AolccProjects\knowledgeTest\KnowledgeTest\KnowledgeTest\obj\Debug\KnowledgeTest.pdb
+D:\AolccProjects\knowledgeTest\KnowledgeTest\KnowledgeTest\obj\Debug\KnowledgeTest.csproj.AssemblyReference.cache
