@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="edittestmaster.aspx.cs" Inherits="KnowledgeTest.edittestmaster" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -13,8 +14,6 @@
             <div class="col-md-12">
                 <div class="card mb-4">
                     <div class="card-body">
-                        
-
                         <div class="row">
                             <div class="col-md-6 form-group mb-3">
                                 <label for="picker1">User Type</label>
@@ -24,7 +23,6 @@
                                     <asp:ListItem Text="Class 7" Value="2" />
                                 </asp:DropDownList>
                                 <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" ErrorMessage="Please select the type of test" CssClass="text-danger font-weight-bold" ControlToValidate="ddlTestMaster" runat="server" />
-
                             </div>
                             <div class="col-md-6 form-group mb-3">
                                 <label for="picker1">Language</label>
@@ -68,7 +66,7 @@
                                 <asp:RequiredFieldValidator Display="Dynamic" ErrorMessage="Enter Answer (D)" CssClass="text-danger font-weight-bold" ControlToValidate="txtAnswerD" runat="server" />
                             </div>
 
-                            
+
                             <div class="col-md-6 form-group mb-3">
                                 <label for="picker1">Correct Answer</label>
                                 <asp:DropDownList runat="server" ID="ddlCorrectAnswer" CssClass="form-control">
@@ -84,37 +82,19 @@
                                 <label for="picker1">Question Image</label>
                                 <br />
                                 <img height="70" src="Images/1.gif" />
-                                
+
                             </div>
-
-
-                            
-
-                            
-
-                            
-
-
-
-                            
-                           
-                           
-
                             <div class="col-md-12">
-                                
+
                                 <%--<button class="btn btn-primary">Submit</button>--%>
-                            
+                                <asp:LinkButton CssClass="btn btn-primary ripple m-1 float-right" runat="server">Submit</asp:LinkButton>
                                 <asp:LinkButton CssClass="btn btn-dark  m-1 float-right " runat="server" CausesValidation="false" PostBackUrl="~/testmasterlist.aspx">Cancel</asp:LinkButton>
                                 <%--<button class="btn btn-primary float-right">Submit</button>--%>
-                                <asp:LinkButton CssClass="btn btn-primary ripple m-1 float-right" runat="server">Submit</asp:LinkButton>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 </asp:Content>

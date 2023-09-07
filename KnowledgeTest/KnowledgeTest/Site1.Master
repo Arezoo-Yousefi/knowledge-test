@@ -234,6 +234,13 @@
                                 </a>
                                 <div class="triangle"></div>
                             </li>
+                            <li class="nav-item" id="liUserTest" runat="server">
+                                <a class="nav-item-hold" href="usertest.aspx">
+                                    <i class="nav-icon i-File-Clipboard-File--Text"></i>
+                                    <span class="nav-text">User Test</span>
+                                </a>
+                                <div class="triangle"></div>
+                            </li>
                             <li class="nav-item" id="liReports" runat="server">
                                 <a class="nav-item-hold" href="reports.aspx">
                                     <i class="nav-icon i-File-Horizontal-Text"></i>

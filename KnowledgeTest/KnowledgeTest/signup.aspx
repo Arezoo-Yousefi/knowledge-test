@@ -4,12 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Knowledge Test-Sign in</title>
-    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,400i,600,700,800,900" rel="stylesheet">
-    <link rel="stylesheet" href="assets/styles/css/themes/lite-purple.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,400i,600,700,800,900" rel="stylesheet"/>
+    <link rel="stylesheet" href="assets/styles/css/themes/lite-purple.min.css"/>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -24,32 +24,32 @@
 
                                 <div class="form-group">
                                     <label for="email">First Name</label>
-                                    <asp:TextBox ID="txtFirstName" CssClass="form-control form-control-rounded" runat="server"></asp:TextBox>
-                                    <asp:RequiredFieldValidator Display="Dynamic" ErrorMessage="Please enter your first name" CssClass="text-danger font-weight-bold" ControlToValidate="txtFirstName" runat="server" />
+                                    <asp:TextBox ID="txtFirstName" placeholder="Please enter your First name" CssClass="form-control form-control-rounded" runat="server"></asp:TextBox>
+                                    <asp:RequiredFieldValidator Display="Dynamic" ErrorMessage="Please enter your First name" CssClass="text-danger font-weight-bold" ControlToValidate="txtFirstName" runat="server" />
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Last Name</label>
-                                    <asp:TextBox ID="TxtLastName" CssClass="form-control form-control-rounded" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="TxtLastName" placeholder="Please enter your Last name" CssClass="form-control form-control-rounded" runat="server"></asp:TextBox>
                                     <asp:RequiredFieldValidator Display="Dynamic" ErrorMessage="Please enter your last name" CssClass="text-danger font-weight-bold" ControlToValidate="TxtLastName" runat="server" />
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Phone Number</label>
-                                    <asp:TextBox ID="txtPhoneNumber" CssClass="form-control form-control-rounded" runat="server"></asp:TextBox>
-                                    <asp:RequiredFieldValidator Display="Dynamic" ErrorMessage="Please enter your phone nymber" CssClass="text-danger font-weight-bold" ControlToValidate="txtPhoneNumber" runat="server" />
+                                    <asp:TextBox ID="txtPhoneNumber" placeholder="Please enter your phone number" CssClass="form-control form-control-rounded" runat="server"></asp:TextBox>
+                                    <asp:RequiredFieldValidator Display="Dynamic" ErrorMessage="Please enter your Phone nymber" CssClass="text-danger font-weight-bold" ControlToValidate="txtPhoneNumber" runat="server" />
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email Address</label>
-                                    <asp:TextBox ID="txtEmaiAddress" CssClass="form-control form-control-rounded" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtEmaiAddress" placeholder="Please enter your Email Address" CssClass="form-control form-control-rounded" runat="server"></asp:TextBox>
                                     <asp:RequiredFieldValidator Display="Dynamic" ErrorMessage="Please enter your email address" CssClass="text-danger font-weight-bold" ControlToValidate="txtEmaiAddress" runat="server" />
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Password</label>
-                                    <asp:TextBox ID="TxtPassword" textmode="Password" CssClass="form-control form-control-rounded" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="TxtPassword" placeholder="Please enter your Password" textmode="Password" CssClass="form-control form-control-rounded" runat="server"></asp:TextBox>
                                     <asp:RequiredFieldValidator Display="Dynamic" ErrorMessage="Please enter your password" CssClass="text-danger font-weight-bold" ControlToValidate="TxtPassword" runat="server" />
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Confirm Password</label>
-                                    <asp:TextBox ID="txtConfirmPassword" CssClass="form-control form-control-rounded" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtConfirmPassword" placeholder="Please confirm your Password" CssClass="form-control form-control-rounded" runat="server"></asp:TextBox>
                                     <asp:RequiredFieldValidator Display="Dynamic" ErrorMessage="Please confirm your password" CssClass="text-danger font-weight-bold" ControlToValidate="txtConfirmPassword" runat="server" />
                                 </div>
                                 <asp:LinkButton cssclass="btn btn-rounded btn-primary btn-block mt-2" runat="server">Sign Up</asp:LinkButton>

@@ -11,106 +11,79 @@ namespace KnowledgeTest
 {
 
 
-    public partial class Site1
+    public partial class usertest
     {
 
         /// <summary>
-        /// head control.
+        /// testTypeBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl testTypeBox;
 
         /// <summary>
-        /// form1 control.
+        /// ddlTestType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTestType;
 
         /// <summary>
-        /// liDashboard control.
+        /// questionBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liDashboard;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl questionBox;
 
         /// <summary>
-        /// liUserlist control.
+        /// libAnswerA control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liUserlist;
+        protected global::System.Web.UI.WebControls.LinkButton libAnswerA;
 
         /// <summary>
-        /// liTestType control.
+        /// libAnswerB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liTestType;
+        protected global::System.Web.UI.WebControls.LinkButton libAnswerB;
 
         /// <summary>
-        /// liTestMaster control.
+        /// libAnswerC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liTestMaster;
+        protected global::System.Web.UI.WebControls.LinkButton libAnswerC;
 
         /// <summary>
-        /// liAllocateTest control.
+        /// libAnswerD control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liAllocateTest;
+        protected global::System.Web.UI.WebControls.LinkButton libAnswerD;
 
         /// <summary>
-        /// liUserTest control.
+        /// libNext control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liUserTest;
-
-        /// <summary>
-        /// liReports control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liReports;
-
-        /// <summary>
-        /// liLogOut control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liLogOut;
-
-        /// <summary>
-        /// ContentPlaceHolder1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
+        protected global::System.Web.UI.WebControls.LinkButton libNext;
     }
 }

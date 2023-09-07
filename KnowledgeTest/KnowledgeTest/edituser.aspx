@@ -14,7 +14,7 @@
             <div class="col-md-12">
                 <div class="card mb-4">
                     <div class="card-body">
-                        
+
 
                         <div class="row">
                             <div class="col-md-6 form-group mb-3">
@@ -65,15 +65,14 @@
                                 <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" ErrorMessage="Please upload picture" CssClass="text-danger font-weight-bold" ControlToValidate="ddlUserType" runat="server" />
 
                             </div>
-                           
+
 
                             <div class="col-md-12">
-                                
+
                                 <%--<button class="btn btn-primary">Submit</button>--%>
-                            
+                                <asp:LinkButton CssClass="btn btn-primary ripple m-1 float-right" runat="server">Submit</asp:LinkButton>
                                 <asp:LinkButton CssClass="btn btn-dark  m-1 float-right " runat="server" CausesValidation="false" PostBackUrl="~/dashboard.aspx">Cancel</asp:LinkButton>
                                 <%--<button class="btn btn-primary float-right">Submit</button>--%>
-                                <asp:LinkButton CssClass="btn btn-primary ripple m-1 float-right" runat="server">Submit</asp:LinkButton>
                             </div>
                         </div>
 

@@ -10,7 +10,7 @@
 
         <div class="separator-breadcrumb border-top"></div>
 
-        <div class="row offset-3">
+        <div class="row offset-2">
             <div class="col-md-8">
                 <div class="card mb-4">
                     <div class="card-body">

@@ -68,7 +68,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="accordion.html" />
+    <Content Include="assets\images\1.gif" />
+    <Content Include="assets\images\2.gif" />
     <Content Include="assets\images\drivers-license-7385051_1280.jpg" />
+    <Content Include="assets\images\drivers-licensesmall-7385051_1280.jpg" />
+    <Content Include="assets\images\IMG_0032.JPG" />
     <Content Include="assets\images\stop-sign-37020_1280.png" />
     <Content Include="changepassword.aspx" />
     <Content Include="edittestmaster.aspx" />
@@ -485,6 +489,7 @@
     <Content Include="typography.html" />
     <Content Include="upload.html" />
     <Content Include="user.profile.html" />
+    <Content Include="usertest.aspx" />
     <Content Include="weather-card.html" />
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
@@ -650,6 +655,13 @@
     </Compile>
     <Compile Include="testtypelist.aspx.designer.cs">
       <DependentUpon>testtypelist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="usertest.aspx.cs">
+      <DependentUpon>usertest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usertest.aspx.designer.cs">
+      <DependentUpon>usertest.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>

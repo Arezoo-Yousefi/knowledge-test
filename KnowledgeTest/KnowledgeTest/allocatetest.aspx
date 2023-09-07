@@ -91,9 +91,6 @@
                                             <td>Class 5</td>
                                             <td>English</td>
                                             <td>Aug 12 2021</td>
-
-
-
                                             <td>
                                                 <a href="#" onclick="javascript:return confirmDelete()" class="text-danger mr-2">
                                                     <i class="nav-icon i-Close-Window font-weight-bold"></i>
@@ -101,14 +98,11 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td scope="row">1</td>
+                                            <td scope="row">2</td>
                                             <td>Smith Doe</td>
                                             <td>Class 7</td>
                                             <td>french</td>
                                             <td>Jul 12 2021</td>
-
-
-
                                             <td>
                                                 <a href="#" onclick="javascript:return confirmDelete()" class="text-danger mr-2">
                                                     <i class="nav-icon i-Close-Window font-weight-bold"></i>
@@ -116,15 +110,12 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td scope="row" class="auto-style1">1</td>
-                                            <td class="auto-style1">Smith Doe</td>
-                                            <td class="auto-style1">Class 5</td>
-                                            <td class="auto-style1">English</td>
-                                            <td class="auto-style1">Aug 12 2021</td>
-
-
-
-                                            <td class="auto-style1">
+                                            <td scope="row">3</td>
+                                            <td>Smith Doe</td>
+                                            <td>Class 5</td>
+                                            <td>English</td>
+                                            <td>Aug 12 2021</td>
+                                            <td>
                                                 <a href="#" onclick="javascript:return confirmDelete()" class="text-danger mr-2">
                                                     <i class="nav-icon i-Close-Window font-weight-bold"></i>
                                                 </a>
