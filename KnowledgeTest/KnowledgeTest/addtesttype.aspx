@@ -14,47 +14,30 @@
             <div class="col-md-12">
                 <div class="card mb-4">
                     <div class="card-body">
-                        
-
                         <div class="row">
-                            
-
-                            
-
-
-
                             <div class="col-md-6 form-group mb-3">
                                 <label for="picker1">Test Type</label>
-                                <asp:DropDownList runat="server" ID="ddlUserType" CssClass="form-control">
-                                    <asp:ListItem Text="Select" Value="0" />
-                                    <asp:ListItem Text="Class 5" Value="1" />
-                                    <asp:ListItem Text="Class 7" Value="2" />
-                                </asp:DropDownList>
-                                <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" ErrorMessage="Please select the type of the test" CssClass="text-danger font-weight-bold" ControlToValidate="ddlUserType" runat="server" />
-
+                                <asp:textBox runat="server" ID="txtTestType" CssClass="form-control">
+                                    
+                                </asp:textBox>
+                                <asp:RequiredFieldValidator Display="Dynamic" ErrorMessage="Please enter the type of the test" CssClass="text-danger font-weight-bold" ControlToValidate="txtTestType" runat="server" />
                             </div>
                             <div class="col-md-6 form-group mb-3">
                                 <label for="picker1">Language</label>
-                                <asp:DropDownList runat="server" ID="ddlanguage" CssClass="form-control">
-                                    <asp:ListItem Text="Select" Value="0" />
-                                    <asp:ListItem Text="English" Value="1" />
-                                    <asp:ListItem Text="French" Value="2" />
-                                </asp:DropDownList>
-                                <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" ErrorMessage="Please select the language" CssClass="text-danger font-weight-bold" ControlToValidate="ddlUserType" runat="server" />
-
+                                <asp:textBox runat="server" ID="txtlanguage" CssClass="form-control">
+                                   
+                                </asp:textBox>
+                                <asp:RequiredFieldValidator Display="Dynamic" ErrorMessage="Please enter the language" CssClass="text-danger font-weight-bold" ControlToValidate="txtlanguage" runat="server" />
                             </div>
-                           
-
                             <div class="col-md-12">
-                                
+                                <asp:Label Text="" CssClass="alert-danger" runat="server" ID="lblError" />
+                                <asp:Label Text="" CssClass="alert-success" runat="server" ID="lblResult" />
                                 <%--<button class="btn btn-primary">Submit</button>--%>
-                            
                                 <asp:LinkButton CssClass="btn btn-dark  m-1 float-right " runat="server" CausesValidation="false" PostBackUrl="~/testtypelist.aspx">Cancel</asp:LinkButton>
                                 <%--<button class="btn btn-primary float-right">Submit</button>--%>
-                                <asp:LinkButton CssClass="btn btn-primary ripple m-1 float-right" runat="server">Submit</asp:LinkButton>
+                                <asp:LinkButton CssClass="btn btn-primary ripple m-1 float-right" runat="server" ID="lnkSubmit" OnClick="lnkSubmit_Click">Submit</asp:LinkButton>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>

@@ -53,8 +53,8 @@
                                 <label for="picker1">User Type</label>
                                 <asp:DropDownList runat="server" ID="ddlUserType" CssClass="form-control">
                                     <asp:ListItem Text="Select" Value="0" />
-                                    <asp:ListItem Text="Admin" Value="1" />
-                                    <asp:ListItem Text="Normal User" Value="2" />
+                                    <asp:ListItem Text="Admin" Value="Admin" />
+                                    <asp:ListItem Text="Normal User" Value="Normal User" />
                                 </asp:DropDownList>
                                 <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" ErrorMessage="Please select the type of user" CssClass="text-danger font-weight-bold" ControlToValidate="ddlUserType" runat="server" />
 
@@ -71,9 +71,11 @@
                                 
                                 <%--<button class="btn btn-primary">Submit</button>--%>
                             
-                                <asp:LinkButton CssClass="btn btn-dark  m-1 float-right " runat="server" CausesValidation="false" PostBackUrl="~/dashboard.aspx">Cancel</asp:LinkButton>
+                                <asp:LinkButton CssClass="btn btn-dark  m-1 float-right " runat="server" CausesValidation="false" PostBackUrl="~/userlist.aspx">Cancel</asp:LinkButton>
                                 <%--<button class="btn btn-primary float-right">Submit</button>--%>
-                                <asp:LinkButton CssClass="btn btn-primary ripple m-1 float-right" runat="server">Submit</asp:LinkButton>
+                                <asp:LinkButton CssClass="btn btn-primary ripple m-1 float-right" runat="server" OnClick="liSubmit_Click">Submit</asp:LinkButton>
+                                <asp:Label Text="" CssClass="alert-success" runat="server" ID="lblresult"/>
+                                <asp:Label Text="" CssClass="alert-danger" runat="server" ID="lblError"/>
                             </div>
                         </div>
 

@@ -14,8 +14,6 @@
             <div class="col-md-12">
                 <div class="card mb-4">
                     <div class="card-body">
-
-
                         <div class="row">
                             <div class="col-md-6 form-group mb-3">
                                 <label for="firstName1">First name</label>
@@ -36,12 +34,6 @@
                             </div>
 
                             <div class="col-md-6 form-group mb-3">
-                                <label for="phone">Password</label>
-                                <asp:TextBox ID="txtpassword" TextMode="Password" CssClass="form-control" placeholder="Enter your Password" runat="server"></asp:TextBox>
-                                <asp:RequiredFieldValidator Display="Dynamic" ErrorMessage="Please enter your password" CssClass="text-danger font-weight-bold" ControlToValidate="txtpassword" runat="server" />
-                            </div>
-
-                            <div class="col-md-6 form-group mb-3">
                                 <label for="credit1">Phone Number</label>
                                 <asp:TextBox ID="txtPhone" CssClass="form-control" placeholder="Enter your Phone number" runat="server"></asp:TextBox>
                                 <asp:RequiredFieldValidator Display="Dynamic" ErrorMessage="Please enter your phone number" CssClass="text-danger font-weight-bold" ControlToValidate="txtPhone" runat="server" />
@@ -53,8 +45,8 @@
                                 <label for="picker1">User Type</label>
                                 <asp:DropDownList runat="server" ID="ddlUserType" CssClass="form-control">
                                     <asp:ListItem Text="Select" Value="0" />
-                                    <asp:ListItem Text="Admin" Value="1" />
-                                    <asp:ListItem Text="Normal User" Value="2" />
+                                    <asp:ListItem Text="Admin" Value="Admin" />
+                                    <asp:ListItem Text="Normal User" Value="Normal User" />
                                 </asp:DropDownList>
                                 <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" ErrorMessage="Please select the type of user" CssClass="text-danger font-weight-bold" ControlToValidate="ddlUserType" runat="server" />
 
@@ -63,15 +55,17 @@
                                 <label for="picker1">User Picture</label>
                                 <asp:FileUpload runat="server" ID="fuUserPicture" CssClass="form-control" />
                                 <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" ErrorMessage="Please upload picture" CssClass="text-danger font-weight-bold" ControlToValidate="ddlUserType" runat="server" />
-
+                                <asp:Image Width="100px" runat="server" ID="imgUserPicture" />
                             </div>
 
 
                             <div class="col-md-12">
 
                                 <%--<button class="btn btn-primary">Submit</button>--%>
-                                <asp:LinkButton CssClass="btn btn-primary ripple m-1 float-right" runat="server">Submit</asp:LinkButton>
-                                <asp:LinkButton CssClass="btn btn-dark  m-1 float-right " runat="server" CausesValidation="false" PostBackUrl="~/dashboard.aspx">Cancel</asp:LinkButton>
+                                <asp:LinkButton CssClass="btn btn-primary ripple m-1 float-right" runat="server" OnClick="lnkSubmit_Click">Submit</asp:LinkButton>
+                                <asp:LinkButton CssClass="btn btn-dark  m-1 float-right " runat="server" CausesValidation="false" PostBackUrl="~/userlist.aspx">Cancel</asp:LinkButton>
+                                <asp:Label Text="" CssClass="alert-success" runat="server" ID="lblresult"/>
+                                <asp:Label Text="" CssClass="alert-danger" runat="server" ID="lblError"/>
                                 <%--<button class="btn btn-primary float-right">Submit</button>--%>
                             </div>
                         </div>

@@ -20,103 +20,56 @@
                             <div class="row">
                                 <div class="col-sm-2">
                                     <asp:TextBox ID="txtSearch" CssClass="form-control" Placeholder="Search" runat="server"></asp:TextBox>
-                                    <i class="search-icon text-muted i-Magnifi-Glass1"></i>
                                 </div>
                                 <div class="col-sm-2">
-                                    <asp:LinkButton ID="likButton" CssClass="btn btn-primary" runat="server">Search</asp:LinkButton>
+                                    <asp:DropDownList ID="ddlStatus" CssClass="form-control" runat="server">
+                                        <asp:ListItem selected="True" Text="All" Value="2" />
+                                        <asp:ListItem Text="Active" Value="1"/>
+                                        <asp:ListItem Text="Deleted" value="0"/>
+                                    </asp:DropDownList>
                                 </div>
-                                <div class="col-sm-8">
+                                <div class="col-sm-2">
+                                    <asp:LinkButton ID="likButton" CssClass="btn btn-primary" runat="server" OnClick="likButton_Click">Search</asp:LinkButton>
+                                </div>
+                                <div class="col-sm-6">
                                     <asp:LinkButton ID="likAddUser" CssClass="btn btn-success float-right m-1" runat="server" PostBackUrl="~/addUser.aspx">Add user</asp:LinkButton>
                                 </div>
                             </div>
                             <div class="table-responsive">
-                                <table class="table table-striped table-bordered" border="1">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">First Name</th>
-                                            <th scope="col">Last Name</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Phone Number</th>
-                                            <th scope="col">Picture</th>
-                                            <th scope="col">User Type</th>
-                                            <th scope="col">Created On</th>
-                                            <th scope="col">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Smith</td>
-                                            <td>Doe</td>
-                                            <td>Smith@gmail.com</td>
-                                            <td>6042323200</td>
-                                            <td>
+                                <asp:Label Text="" CssClass="alert-success" runat="server" ID="lblresult" />
+                                <asp:GridView AutoGenerateColumns="false" runat="server" ID="gvData" CssClass="table table-striped table-bordered">
+                                    <Columns>
+                                        <asp:BoundField HeaderText="ID" DataField="ID" />
+                                        <asp:TemplateField HeaderText="User Picture">
+                                            <ItemTemplate>
+                                                <asp:Image Width="50px" ImageUrl='<%# String.Format("~/Files/UserPicture/{0:C}", Eval("UserPicture") ) %>' runat="server" ID="imgUserPicture" />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
 
-                                                <img class="rounded-circle m-0 avatar-sm-table " src="/assets/images/faces/1.jpg" alt="">
-                                            </td>
-                                            <td>Admin</td>
-                                            <td>Aug 24 2023</td>
-
-
-                                            <td>
-                                                <a href="edituser.aspx" class="text-success mr-2">
+                                        <asp:BoundField HeaderText="First Name" DataField="FirstName" />
+                                        <asp:BoundField HeaderText="Last Name" DataField="LastName" />
+                                        <asp:BoundField HeaderText="Email Address" DataField="EmailAddress" />
+                                        <asp:BoundField HeaderText="Phone Number" DataField="Phone" />
+                                        <asp:BoundField HeaderText="User Type" DataField="UserType" />
+                                        <asp:BoundField HeaderText="Created On" DataField="CreatedOn" />
+                                        <asp:TemplateField HeaderText="Status">
+                                            <ItemTemplate>
+                                                <asp:LinkButton CommandArgument='<%#Eval("ID")%>' Text='<%#Eval("Status")%>' CssClass="text-danger mr-2" runat="server" OnClick="Delete_Click" ID="likDelete">
+                                                </asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Action">
+                                            <ItemTemplate>
+                                                <asp:LinkButton Text="Action" CommandArgument='<%#Eval("ID")%>' CssClass="text-success mr-2" runat="server" OnClick="Edit_Click" ID="likEdit">
                                                     <i class="nav-icon i-Pen-2 font-weight-bold"></i>
-                                                </a>
-                                                <a href="#" onclick="javascript:return confirmDelete()" class="text-danger mr-2">
-                                                    <i class="nav-icon i-Close-Window font-weight-bold"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Smith</td>
-                                            <td>Doe</td>
-                                            <td>Smith@gmail.com</td>
-                                            <td>6042323200</td>
-                                            <td>
+                                                </asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                    </Columns>
+                                </asp:GridView>
 
-                                                <img class="rounded-circle m-0 avatar-sm-table " src="/assets/images/faces/1.jpg" alt="">
-                                            </td>
-                                            <td>Admin</td>
-                                            <td>Aug 24 2023</td>
-
-
-                                            <td>
-                                                <a href="edituser.aspx" class="text-success mr-2">
-                                                    <i class="nav-icon i-Pen-2 font-weight-bold"></i>
-                                                </a>
-                                                <a href="#" onclick="javascript:return confirmDelete()" class="text-danger mr-2">
-                                                    <i class="nav-icon i-Close-Window font-weight-bold"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Smith</td>
-                                            <td>Doe</td>
-                                            <td>Smith@gmail.com</td>
-                                            <td>6042323200</td>
-                                            <td>
-
-                                                <img class="rounded-circle m-0 avatar-sm-table " src="/assets/images/faces/1.jpg" alt="">
-                                            </td>
-                                            <td>Admin</td>
-                                            <td>Aug 24 2023</td>
-
-
-                                            <td>
-                                                <a href="edituser.aspx" class="text-success mr-2">
-                                                    <i class="nav-icon i-Pen-2 font-weight-bold"></i>
-                                                </a>
-                                                <a href="#" onclick="javascript:return confirmDelete()" class="text-danger mr-2">
-                                                    <i class="nav-icon i-Close-Window font-weight-bold"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
                             </div>
+                            
                         </div>
                     </div>
 
@@ -126,11 +79,11 @@
         </div>
         <!-- end of col-->
         <!-- end of row-->
-        <script>
+        <%--<script>
             function confirmDelete() {
-                confirm("You are going to delete a user!!")
+                return confirm("You are going to delete a user!!");
             }
-        </script>
+        </script>--%>
     </div>
 
 
