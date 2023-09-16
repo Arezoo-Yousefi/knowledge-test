@@ -60,15 +60,6 @@ namespace KnowledgeTest
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liTestType;
 
         /// <summary>
-        /// liTestMaster control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liTestMaster;
-
-        /// <summary>
         /// liAllocateTest control.
         /// </summary>
         /// <remarks>
@@ -76,6 +67,15 @@ namespace KnowledgeTest
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liAllocateTest;
+
+        /// <summary>
+        /// liTestMaster control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liTestMaster;
 
         /// <summary>
         /// liUserTest control.

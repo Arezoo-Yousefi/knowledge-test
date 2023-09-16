@@ -220,17 +220,17 @@
                                 </a>
                                 <div class="triangle"></div>
                             </li>
-                            <li class="nav-item" id="liTestMaster" runat="server">
-                                <a class="nav-item-hold" href="testmasterlist.aspx">
-                                    <i class="nav-icon i-Computer-Secure"></i>
-                                    <span class="nav-text">Test Master</span>
-                                </a>
-                                <div class="triangle"></div>
-                            </li>
                             <li class="nav-item" id="liAllocateTest" runat="server">
                                 <a class="nav-item-hold" href="allocatetest.aspx">
                                     <i class="nav-icon i-File-Clipboard-File--Text"></i>
                                     <span class="nav-text">Allocate Test</span>
+                                </a>
+                                <div class="triangle"></div>
+                            </li>
+                            <li class="nav-item" id="liTestMaster" runat="server">
+                                <a class="nav-item-hold" href="testmasterlist.aspx">
+                                    <i class="nav-icon i-Computer-Secure"></i>
+                                    <span class="nav-text">Test Master</span>
                                 </a>
                                 <div class="triangle"></div>
                             </li>
@@ -542,7 +542,6 @@
 
                 <!-- ============ Body content start ============= -->
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-
                 </asp:ContentPlaceHolder>
                 <!-- ============ Body content End ============= -->
             </div>
