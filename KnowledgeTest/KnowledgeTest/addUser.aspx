@@ -71,9 +71,10 @@
                                 
                                 <%--<button class="btn btn-primary">Submit</button>--%>
                             
-                                <asp:LinkButton CssClass="btn btn-dark  m-1 float-right " runat="server" CausesValidation="false" PostBackUrl="~/userlist.aspx">Cancel</asp:LinkButton>
+                                
                                 <%--<button class="btn btn-primary float-right">Submit</button>--%>
                                 <asp:LinkButton CssClass="btn btn-primary ripple m-1 float-right" runat="server" OnClick="liSubmit_Click">Submit</asp:LinkButton>
+                                <asp:LinkButton CssClass="btn btn-dark  m-1 float-right " runat="server" CausesValidation="false" PostBackUrl="~/userlist.aspx">Cancel</asp:LinkButton>
                                 <asp:Label Text="" CssClass="alert-success" runat="server" ID="lblresult"/>
                                 <asp:Label Text="" CssClass="alert-danger" runat="server" ID="lblError"/>
                             </div>

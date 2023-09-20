@@ -34,7 +34,8 @@
                                 </div>
                                 <%--<button class="btn btn-rounded btn-primary btn-block mt-2">Sign In</button>--%>
                                 <asp:LinkButton cssclass="btn btn-rounded btn-primary btn-block mt-2" ID="lnkLogin" runat="server" OnClick="lnkLogin_Click">Sign In</asp:LinkButton>
-
+                                <asp:Label Text="" ID="lblError" runat="server" />
+                                
 
                                 <div class="mt-3 text-center">
                                     <a href="forgot.aspx" class="text-muted"><u>Forgot Password?</u></a><br />

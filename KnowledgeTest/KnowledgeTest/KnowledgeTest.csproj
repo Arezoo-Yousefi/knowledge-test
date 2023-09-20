@@ -1095,6 +1095,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Files\QuestionImage\" />
     <Folder Include="Files\UserPicture\" />
   </ItemGroup>
   <PropertyGroup>

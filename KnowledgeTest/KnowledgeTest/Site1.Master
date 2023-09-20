@@ -24,7 +24,7 @@
     <form id="form1" runat="server">
         <div>
             <div class="app-admin-wrap layout-sidebar-large clearfix">
-                <div class="main-header">
+                <div class="main-header bg-light">
                     <div class="logo">
                         <img src="./assets/images/stop-sign-37020_1280.png" alt="">
                     </div>

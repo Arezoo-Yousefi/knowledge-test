@@ -16,20 +16,16 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 form-group mb-3">
-                                <label for="picker1">User Type</label>
-                                <asp:DropDownList runat="server" ID="ddlTestMaster" CssClass="form-control">
-                                    <asp:ListItem Text="Select" Value="0" />
-                                    <asp:ListItem Text="Class 5" Selected="True" Value="1" />
-                                    <asp:ListItem Text="Class 7" Value="2" />
+                                <label for="picker1">Test Type</label>
+                                <asp:DropDownList runat="server" ID="ddlTestType" CssClass="form-control" AutoPostBack="true" OnTextChanged="ddlTestType_TextChanged">
+                                    
                                 </asp:DropDownList>
-                                <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" ErrorMessage="Please select the type of test" CssClass="text-danger font-weight-bold" ControlToValidate="ddlTestMaster" runat="server" />
+                                <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" ErrorMessage="Please select the type of test" CssClass="text-danger font-weight-bold" ControlToValidate="ddlTestType" runat="server" />
                             </div>
                             <div class="col-md-6 form-group mb-3">
                                 <label for="picker1">Language</label>
                                 <asp:DropDownList runat="server" ID="ddlLanguage" CssClass="form-control">
-                                    <asp:ListItem Text="Select" Value="0" />
-                                    <asp:ListItem Text="English" Value="1" />
-                                    <asp:ListItem Text="French" Selected="True" Value="2" />
+                                    
                                 </asp:DropDownList>
                                 <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" ErrorMessage="Please select the language" CssClass="text-danger font-weight-bold" ControlToValidate="ddlLanguage" runat="server" />
 
@@ -42,7 +38,7 @@
                             <div class="col-md-6 form-group mb-3">
                                 <label for="picker1">Question Image</label>
                                 <asp:FileUpload runat="server" ID="fuQuestionImage" CssClass="form-control" />
-                                <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" ErrorMessage="Please upload picture" CssClass="text-danger font-weight-bold" ControlToValidate="fuQuestionImage" runat="server" />
+                                <%--<asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" ErrorMessage="Please upload picture" CssClass="text-danger font-weight-bold" ControlToValidate="fuQuestionImage" runat="server" />--%>
 
                             </div>
                             <div class="col-md-6 form-group mb-3">
@@ -71,25 +67,27 @@
                                 <label for="picker1">Correct Answer</label>
                                 <asp:DropDownList runat="server" ID="ddlCorrectAnswer" CssClass="form-control">
                                     <asp:ListItem Text="Select" Value="0" />
-                                    <asp:ListItem Text="A" Value="1" />
-                                    <asp:ListItem Text="B" Value="2" />
-                                    <asp:ListItem Text="C" Value="3" />
-                                    <asp:ListItem Text="D" Value="4" />
+                                    <asp:ListItem Text="A" Value="A" />
+                                    <asp:ListItem Text="B" Value="B" />
+                                    <asp:ListItem Text="C" Value="C" />
+                                    <asp:ListItem Text="D" Value="D" />
                                 </asp:DropDownList>
                                 <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" ErrorMessage="Please select the answer" CssClass="text-danger font-weight-bold" ControlToValidate="ddlCorrectAnswer" runat="server" />
                             </div>
                             <div class="col-md-6 form-group mb-3">
                                 <label for="picker1">Question Image</label>
+                                <asp:Image width="100px" alt="Question Image" id="imgQuestion" runat="server" />
                                 <br />
-                                <img height="70" src="Images/1.gif" />
+                                
 
                             </div>
-                            <div class="col-md-12">
+                           <div class="col-md-12">
 
                                 <%--<button class="btn btn-primary">Submit</button>--%>
-                                <asp:LinkButton CssClass="btn btn-primary ripple m-1 float-right" runat="server">Submit</asp:LinkButton>
-                                <asp:LinkButton CssClass="btn btn-dark  m-1 float-right " runat="server" CausesValidation="false" PostBackUrl="~/testmasterlist.aspx">Cancel</asp:LinkButton>
-                                <%--<button class="btn btn-primary float-right">Submit</button>--%>
+                                <asp:LinkButton ID="lnkSubmit" CssClass="btn btn-primary ripple m-1 float-right" OnClick="lnkSubmit_Click" runat="server">Submit</asp:LinkButton>
+                                <asp:LinkButton ID="lnkCancel" CssClass="btn btn-dark  m-1 float-right " runat="server" CausesValidation="false" PostBackUrl="~/testmasterlist.aspx" >Cancel</asp:LinkButton>
+                                <asp:Label Text="" CssClass="alert-success" runat="server" ID="lblresult"/>
+                                <asp:Label Text="" CssClass="alert-danger" runat="server" ID="lblError"/>
                             </div>
                         </div>
                     </div>

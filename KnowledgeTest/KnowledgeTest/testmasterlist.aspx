@@ -29,89 +29,59 @@
                                     <asp:TextBox ID="txtSearch" CssClass="form-control" Placeholder="Search" runat="server"></asp:TextBox>
                                 </div>
                                 <div class="col-sm-2">
-                                    <asp:LinkButton ID="likButton" CssClass="btn btn-primary" runat="server">Search</asp:LinkButton>
+                                    <asp:DropDownList ID="ddlStatus" CssClass="form-control" runat="server">
+                                        <asp:ListItem selected="True" Text="All" Value="2" />
+                                        <asp:ListItem Text="Active" Value="1"/>
+                                        <asp:ListItem Text="Deleted" value="0"/>
+                                    </asp:DropDownList>
                                 </div>
-                                <div class="col-sm-8">
+                                <div class="col-sm-2">
+                                    <asp:LinkButton ID="likButton" CssClass="btn btn-primary" runat="server" OnClick="likButton_Click">Search</asp:LinkButton>
+                                </div>
+                                <div class="col-sm-6">
                                     <asp:LinkButton ID="likAddUser" CssClass="btn btn-success float-right m-1" runat="server" PostBackUrl="~/addtestmaster.aspx">Add Test Master</asp:LinkButton>
                                 </div>
                             </div>
-                            <div class="col-sm-12 table-responsive">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">NO</th>
-                                            <th scope="col">Test Type</th>
-                                            <th scope="col">Language</th>
-                                            <th scope="col">Question</th>
-                                            <th scope="col">Question Image</th>
-                                            <th scope="col">Answer (a)</th>
-                                            <th scope="col">Answer (b)</th>
-                                            <th scope="col">Answer (c)</th>
-                                            <th scope="col">Answer (d)</th>
-                                            <th scope="col">Correct Answer</th>
-                                            <th scope="col">Created On</th>
-                                            <th scope="col">Created By</th>
-                                            <th scope="col">Status</th>
-                                            <th scope="col">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td scope="row">1</td>
-                                            <td>Class 5</td>
-                                            <td>English</td>
-                                            <td>Question</td>
-                                            <td>
-                                                <img width="50px" src="Images/1.gif" /></td>
-                                             <td>Answer (A)</td>
-                                             <td>Answer (B)</td>
-                                             <td>Answer (C)</td>
-                                             <td>Answer (D)</td>
-                                             <td>B</td>
-                                            <td>Aug 12 2021</td>
-                                            <td>Arezoo</td>
-                                            
-                                            <td><span class="badge badge-success">Active</span></td>
-                                            <td>
-                                                <a href="edittestmaster.aspx" class="text-success mr-2">
-                                                    <i class="nav-icon i-Pen-2 font-weight-bold"></i>
-                                                </a>
-                                                <a href="#" onclick="javascript:return confirmDelete()" class="text-danger mr-2">
-                                                    <i class="nav-icon i-Close-Window font-weight-bold"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td scope="row">2</td>
-                                            <td>Class 5</td>
-                                            <td>English</td>
-                                            <td>Question</td>
-                                            <td>
-                                                <img width="50px" src="Images/2.gif" /></td>
-                                             <td>Answer (A)</td>
-                                             <td>Answer (B)</td>
-                                             <td>Answer (C)</td>
-                                             <td>Answer (D)</td>
-                                             <td>D</td>
-                                            <td>Aug 22 2021</td>
-                                            <td>Arezoo</td>
-                                            
-                                            <td><span class="badge badge-success">Active</span></td>
-                                            <td>
-                                                <a href="edittestmaster.aspx" class="text-success mr-2">
-                                                    <i class="nav-icon i-Pen-2 font-weight-bold"></i>
-                                                </a>
-                                                <a href="#" onclick="javascript:return confirmDelete()" class="text-danger mr-2">
-                                                    <i class="nav-icon i-Close-Window font-weight-bold"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                            <div class="table-responsive">
+                                <asp:Label Text="" CssClass="alert-success" runat="server" ID="lblresult" />
+                                <asp:GridView AutoGenerateColumns="false" runat="server" ID="gvData" CssClass="table table-striped table-bordered">
+                                    <Columns>
+                                        <asp:BoundField HeaderText="ID" DataField="ID" />
+                                        <asp:BoundField HeaderText="Test Type" DataField="TestType" />
+                                        <asp:BoundField HeaderText="Language" DataField="Language" />
+                                        <asp:BoundField HeaderText="Question" DataField="Question" />
+                                        <asp:TemplateField HeaderText="User Picture">
+                                            <ItemTemplate>
+                                                <asp:Image Width="50px" ImageUrl='<%# String.Format("~/Files/QuestionImage/{0:C}", Eval("QuestionImage") ) %>' runat="server" ID="imgUserPicture" />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
 
+                                        
+                                        <asp:BoundField HeaderText="Answer (A)" DataField="AnswerA" />
+                                        <asp:BoundField HeaderText="Answer (B)" DataField="AnswerB" />
+                                        <asp:BoundField HeaderText="Answer (C)" DataField="AnswerC" />
+                                        <asp:BoundField HeaderText="Answer (D)" DataField="AnswerD" />
+                                        <asp:BoundField HeaderText="Correct Answer" DataField="CorrectAnswer" />
+                                        <asp:BoundField HeaderText="Created On" DataField="CreatedOn" />
+                                        <asp:TemplateField HeaderText="Status">
+                                            <ItemTemplate>
+                                                <asp:LinkButton CommandArgument='<%#Eval("ID")%>' Text='<%#Eval("Status")%>' CssClass="text-danger mr-2" runat="server" OnClick="Delete_Click" ID="likDelete">
+                                                </asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Action">
+                                            <ItemTemplate>
+                                                <asp:LinkButton Text="Action" CommandArgument='<%#Eval("ID")%>' CssClass="text-success mr-2" runat="server" OnClick="Edit_Click" ID="likEdit">
+                                                    <i class="nav-icon i-Pen-2 font-weight-bold"></i>
+                                                </asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                    </Columns>
+                                </asp:GridView>
+
+                            </div>
+                            
+                        </div>
 
                 </div>
             </div>
