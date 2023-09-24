@@ -143,7 +143,7 @@ namespace KnowledgeTest
                             $", AnswerD = '{txtAnswerD.Text}', CorrectAnswer = '{ddlCorrectAnswer.SelectedValue}' Where ID = {Convert.ToInt32(ViewState["editTestMasterID"])}";
                     }
                     int result = SqlHelper.ExecuteNonQuery(strConnection, CommandType.Text, strQuerry);
-                    if (result > 0)
+                    if (result > -1)
                     {
                         lblresult.Text = "The Test Master has been successfully Updated.";
                         //txtQuestion.Text = string.Empty;

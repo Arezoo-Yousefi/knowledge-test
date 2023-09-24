@@ -62,7 +62,8 @@
                             <div class="col-md-6 form-group mb-3">
                                 <label for="picker1">User Picture</label>
                                 <asp:FileUpload runat="server" ID="fuUserPicture" CssClass="form-control" />
-                                <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" ErrorMessage="Please upload picture" CssClass="text-danger font-weight-bold" ControlToValidate="ddlUserType" runat="server" />
+                                <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" ErrorMessage="Please upload picture" CssClass="text-danger font-weight-bold" ControlToValidate="fuUserPicture" runat="server" />
+                                <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" ErrorMessage="Please upload picture" CssClass="text-danger font-weight-bold" ControlToValidate="fuUserPicture" runat="server" />
 
                             </div>
                            

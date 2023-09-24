@@ -50,7 +50,7 @@
                                         <asp:BoundField HeaderText="Test Type" DataField="TestType" />
                                         <asp:BoundField HeaderText="Language" DataField="Language" />
                                         <asp:BoundField HeaderText="Question" DataField="Question" />
-                                        <asp:TemplateField HeaderText="User Picture">
+                                        <asp:TemplateField HeaderText="Question Image">
                                             <ItemTemplate>
                                                 <asp:Image Width="50px" ImageUrl='<%# String.Format("~/Files/QuestionImage/{0:C}", Eval("QuestionImage") ) %>' runat="server" ID="imgUserPicture" />
                                             </ItemTemplate>

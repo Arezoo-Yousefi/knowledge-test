@@ -75,7 +75,7 @@ namespace KnowledgeTest
             string strID = objLinkaButton.CommandArgument;
             string strQuerry = $"Update [TestType] set status = Case When Status = 0 Then 1 Else 0 End Where ID = { strID}";
             int result = SqlHelper.ExecuteNonQuery(strConnection, CommandType.Text, strQuerry);
-            if (result > 0)
+            if (result > -1)
             {
                 lblresult.Text = "Status has been changed successfully";
                 FillData();

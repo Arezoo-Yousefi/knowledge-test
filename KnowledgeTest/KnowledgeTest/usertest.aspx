@@ -16,37 +16,62 @@
                     <div class="card-body">
                         <div class="col-md-12 form-group mb-3">
                             <label for="phone">Test Type</label>
-                            <asp:DropDownList ID="ddlTestType" runat="server" CssClass="form-control">
-                                <asp:ListItem Text="Select" Value="0"/>
-                                <asp:ListItem Text="Class 5- English" Value="1" />
-                                <asp:ListItem Text="Class 5- French" Value="2" />
-                                <asp:ListItem Text="Class 7- English" Value="3" />
-                                <asp:ListItem Text="Class 7- French" Value="4" />
+                            <asp:DropDownList ID="ddlTestType" runat="server" CssClass="form-control" OnTextChanged="ddlTestType_TextChanged" AutoPostBack="true">
                             </asp:DropDownList>
-
+                            <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" ErrorMessage="Please select type of the test" CssClass="text-danger font-weight-bold" ControlToValidate="ddlTestType" runat="server" />
+                        </div>
+                        <div class="col-md-12 form-group mb-3">
+                            <label for="phone">Language</label>
+                            <asp:DropDownList ID="ddlLanguage" runat="server" CssClass="form-control">
+                            </asp:DropDownList>
+                            <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" ErrorMessage="Please select Language" CssClass="text-danger font-weight-bold" ControlToValidate="ddlLanguage" runat="server" />
                         </div>
                         <%--<button class="btn btn-primary float-right">Submit</button>--%>
-                        <asp:LinkButton CssClass="btn btn-primary ripple m-1 float-right" runat="server" OnClick="Unnamed1_Click">Submit</asp:LinkButton>
-                        <asp:CompareValidator Display="Dynamic" ErrorMessage="Please select the test type" CssClass="text-danger font-weight-bold" ControlToValidate="ddlTestType"  Operator="NotEqual" ValueToCompare="0" runat="server" />
+                        <asp:LinkButton ID="lnkSubmitTestType" CssClass="btn btn-primary ripple m-1 float-right" runat="server" OnClick="lnkSubmitTestType_Click">Submit</asp:LinkButton>
                         <asp:LinkButton CssClass="btn btn-dark  m-1 float-right " runat="server" CausesValidation="false" PostBackUrl="~/dashboard.aspx">Cancel</asp:LinkButton>
+                        <asp:Label Text="" ID="lblSuccess" CssClass="alert-success" runat="server" />
+                        <asp:Label Text="" ID="lblError" CssClass="alert-danger" runat="server" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="questionBox1" class="row offset-2" runat="server" visible="false">
+            <div class="col-md-8">
+                <div class="card mb-4">
+                    <div id="questionBox2" class="card-body">
+                        <div class="card-title mb-3">
+                            <asp:Label Text="Question 1" ID="lblQuestion" runat="server" />
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 form-group mb-3 border">
+                                
+                                <asp:Image ID="imgQuestion" Width="200px" runat="server" />
+                            </div>
+                            <div class="col-md-8 form-group mb-6">
+                                <asp:LinkButton ID="lnkAnswerA" CommandName="A" CssClass="form-control col-md-12 form-group mb-3" runat="server" OnClick="lnkAnswer_Click">A</asp:LinkButton>
+                                <asp:LinkButton ID="lnkAnswerB" CommandName="B" CssClass="form-control col-md-12 form-group mb-3" runat="server" OnClick="lnkAnswer_Click">B</asp:LinkButton>
+                                <asp:LinkButton ID="lnkAnswerC" CommandName="C" CssClass="form-control col-md-12 form-group mb-3" runat="server" OnClick="lnkAnswer_Click">C</asp:LinkButton>
+                                <asp:LinkButton ID="lnkAnswerD" CommandName="D" CssClass="form-control col-md-12 form-group mb-3" runat="server" OnClick="lnkAnswer_Click">D</asp:LinkButton>
+                            </div>
+                        </div>
+                        <asp:LinkButton ID="lnkNext" CssClass="btn btn-outline-primary ripple m-1 float-right" runat="server" OnClick="lnkNext_Click" Visible="false">NEXT</asp:LinkButton>
 
                     </div>
                 </div>
             </div>
         </div>
-        <div id="questionBox" class="row offset-2"  runat="server" visible="false">
+        <div id="resultBox1" class="row offset-2" runat="server" visible="false">
             <div class="col-md-8">
                 <div class="card mb-4">
-                    <div id="contentPlaceHolder-Test" class="card-body">
-                        <div class="card-title mb-3">Question Box</div>
-                        <div class="row">
-                            <asp:LinkButton ID="libAnswerA" class="form-control col-md-12 form-group mb-3" runat="server" OnClick="libAnswer_Click">A</asp:LinkButton>
-                            <asp:LinkButton ID="libAnswerB" class="form-control col-md-12 form-group mb-3" runat="server" OnClick="libAnswer_Click">B</asp:LinkButton>
-                            <asp:LinkButton ID="libAnswerC" class="form-control col-md-12 form-group mb-3" runat="server" OnClick="libAnswer_Click">C</asp:LinkButton> 
-                            <asp:LinkButton ID="libAnswerD" class="form-control col-md-12 form-group mb-3" runat="server" OnClick="libAnswer_Click">D</asp:LinkButton>
+                    <div id="resultBox2" class="card-body">
+                        <div class="card-title mb-3">
+                            <asp:Label Text="Result" CssClass="" ID="lblResult" runat="server" />
                         </div>
-                        <asp:LinkButton ID="libNext" CssClass="btn btn-primary ripple m-1 float-right" runat="server" OnClick="Unnamed1_Click" Visible="false">NEXT</asp:LinkButton>
-                        
+                       <div class="card-title mb-3">
+                            <asp:Label Text="" ID="lblCorrectAnswer" runat="server" /> / <asp:Label Text="" ID="lblQuestionNumber" runat="server" />
+                        </div>
+                        <asp:LinkButton ID="lblFinish" CssClass="btn btn-primary ripple m-1 float-right" runat="server" OnClick="lblFinish_Click" Visible="false">Finish</asp:LinkButton>
+
                     </div>
                 </div>
             </div>

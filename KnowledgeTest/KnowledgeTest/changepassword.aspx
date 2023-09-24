@@ -30,7 +30,9 @@
                             <asp:RequiredFieldValidator Display="Dynamic" ErrorMessage="Please confirm your password" CssClass="text-danger font-weight-bold" ControlToValidate="txtConfirmPassword" runat="server" />
                         </div>
                         <%--<button class="btn btn-primary float-right">Submit</button>--%>
-                        <asp:LinkButton CssClass="btn btn-primary ripple m-1 float-right" runat="server">Submit</asp:LinkButton>
+                        <asp:Label Text="" ID="lblError" CssClass="alert-danger" runat="server" />
+                        <asp:Label Text="" ID="lblSuccess" CssClass="alert-success" runat="server" />
+                        <asp:LinkButton ID="lnkSubmit" CssClass="btn btn-primary ripple m-1 float-right" OnClick="lnkSubmit_Click" runat="server">Submit</asp:LinkButton>
                         <asp:LinkButton CssClass="btn btn-dark  m-1 float-right " runat="server" CausesValidation="false" PostBackUrl="~/dashboard.aspx">Cancel</asp:LinkButton>
                         
                     </div>

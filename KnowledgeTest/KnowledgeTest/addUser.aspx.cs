@@ -43,7 +43,7 @@ namespace KnowledgeTest
 
                     strQuerry = $"INSERT INTO[dbo].[Users]([FirstName],[LastName],[EmailAddress],[Password],[Phone],[UserType],[UserPicture])VALUES('{txtFirstName.Text}','{txtLastName.Text}','{txtEmail.Text}','{txtpassword.Text}','{txtPhone.Text}','{ddlUserType.SelectedValue}','{strFileName}')";
                     int result = SqlHelper.ExecuteNonQuery(strConnection, CommandType.Text, strQuerry);
-                    if (result > 0)
+                    if (result > -1)
                     {
                         lblresult.Text = "The User has been successfully added.";
                         txtFirstName.Text = string.Empty;

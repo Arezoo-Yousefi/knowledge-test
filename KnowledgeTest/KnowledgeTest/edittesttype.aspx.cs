@@ -67,7 +67,7 @@ namespace KnowledgeTest
                 $"Where ID = {Convert.ToInt32(ViewState["editTestTypeID"])}";
 
                 int result = SqlHelper.ExecuteNonQuery(strConnection, CommandType.Text, strQuerry);
-                if (result > 0)
+                if (result > -1)
                 {
                     lblResult.Text = "Test Type has been successfully Updated.";
                 }

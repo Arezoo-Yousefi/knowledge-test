@@ -15,8 +15,9 @@
             <div class="header-cover" style="background-image: url('assets/images/drivers-licensesmall-7385051_1280.jpg')"></div>
 
             <div class="user-info">
-                <img class="profile-picture avatar-lg mb-2" src="Images/IMG_0032.JPG" alt="">
-                <p class="m-0 text-24">Arezoo Yousefi</p>
+                <asp:Image cssClass="profile-picture avatar-lg mb-2" ID="imgUserPicture" runat="server" />
+                
+                <p class="m-0 text-24"><asp:Label ID="lblUserName" runat="server" /></p>
 
             </div>
             <div class="card-body">
@@ -32,25 +33,25 @@
                             <div class="col-md-4 col-6">
                                 <div class="mb-4">
                                     <p class="text-primary mb-1"><i class="i-MaleFemale text-16 mr-1"></i>First Name</p>
-                                    <span>Arezoo</span>
+                                    <span><asp:Label ID="lblFirstName" runat="server" /></span>
                                 </div>
                                 <div class="mb-4">
                                     <p class="text-primary mb-1"><i class="i-MaleFemale text-16 mr-1"></i>Last Name</p>
-                                    <span>Yousefi</span>
+                                    <span><asp:Label ID="lblLastName" runat="server" /></span>
                                 </div>
                                 <div class="mb-4">
                                     <p class="text-primary mb-1"><i class="i-Email text-16 mr-1"></i>Email Address</p>
-                                    <span>are_yousefi@yahoo.com</span>
+                                    <span><asp:Label ID="lblEmailAddress" runat="server" /></span>
                                 </div>
                             </div>
                             <div class="col-md-4 col-6">
                                 <div class="mb-4">
                                     <p class="text-primary mb-1"><i class="i-Bell text-16 mr-1"></i>Phone Number</p>
-                                    <span>7786370096</span>
+                                    <span><asp:Label ID="lblPhone" runat="server" /></span>
                                 </div>
                                 <div class="mb-4">
                                     <p class="text-primary mb-1"><i class="i-Professor text-16 mr-1"></i>User Type</p>
-                                    <span>Admin</span>
+                                    <span><asp:Label ID="lblUserType" runat="server" /></span>
                                 </div>
                             </div>
                             <%--<div class="mb-4">

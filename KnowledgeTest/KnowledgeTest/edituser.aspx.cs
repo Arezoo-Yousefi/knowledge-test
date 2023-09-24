@@ -81,7 +81,7 @@ namespace KnowledgeTest
                 $",[UserType]='{ddlUserType.SelectedValue}'{(fuUserPicture.HasFile ? strImgQuery : "")} Where ID = {Convert.ToInt32(ViewState["editUserID"])}";
 
                 int result = SqlHelper.ExecuteNonQuery(strConnection, CommandType.Text, strQuerry);
-                if (result > 0)
+                if (result > -1)
                 {
                     lblresult.Text = "The User has been successfully Updated.";
                 }

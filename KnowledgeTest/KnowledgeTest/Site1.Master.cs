@@ -12,17 +12,15 @@ namespace KnowledgeTest
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //foreach (var c in Controls)
-            //{
-            //    if (c is HtmlGenericControl)
-            //    {
-            //        HtmlGenericControl h = (HtmlGenericControl)c;
-            //        if (h.Attributes["class"] == "nav-item active")
-            //        {
-            //            h.Attributes["class"] = "nav-item";
-            //        }
-            //    }
-            //}
+            if (Session["UserID"] == null)
+            {
+                Response.Redirect("~/signin.aspx");
+            }
+            else
+            {
+                lblUserName.Text = Convert.ToString(Session["Name"]);
+                userDropdown.ImageUrl = Convert.ToString(Session["UserPicture"]);
+            }
 
         }
     }

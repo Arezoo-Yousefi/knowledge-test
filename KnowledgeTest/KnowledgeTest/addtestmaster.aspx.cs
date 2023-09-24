@@ -96,10 +96,10 @@ namespace KnowledgeTest
                     strQuerry = $"INSERT INTO TestMaster(TestTypeID, Question, QuestionImage, AnswerA, AnswerB, AnswerC" +
                         $", AnswerD, CorrectAnswer)VALUES" +
                         $"((Select ID from TestType where TestType.TestType = '{ddlTestType.SelectedItem}' And TestType.Language = '{ddlLanguage.SelectedItem}')" +
-                        $",'{txtQuestion.Text}','{strFileName}','{txtAnswerA.Text}','{txtAnswerB.Text}', '{txtAnswerC.Text}', '{txtAnswerD.Text}'" +
+                        $",N'{txtQuestion.Text}','{strFileName}',N'{txtAnswerA.Text}',N'{txtAnswerB.Text}', N'{txtAnswerC.Text}', N'{txtAnswerD.Text}'" +
                         $",'{ddlCorrectAnswer.SelectedValue}')";
                     int result = SqlHelper.ExecuteNonQuery(strConnection, CommandType.Text, strQuerry);
-                    if (result > 0)
+                    if (result > -1)
                     {
                         lblresult.Text = "The Test Master has been successfully added.";
                         txtQuestion.Text = string.Empty;

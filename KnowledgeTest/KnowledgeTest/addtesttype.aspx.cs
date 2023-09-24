@@ -41,7 +41,7 @@ namespace KnowledgeTest
                    
                     strQuerry = $"INSERT INTO TestType ([TestType],[Language]) VALUES ('{txtTestType.Text}','{txtlanguage.Text}')";
                     int result = SqlHelper.ExecuteNonQuery(strConnection, CommandType.Text, strQuerry);
-                    if (result > 0)
+                    if (result > -1)
                     {
                         lblResult.Text = "Test Type has been created successfully.";
 

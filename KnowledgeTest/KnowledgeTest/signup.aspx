@@ -29,7 +29,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Last Name</label>
-                                    <asp:TextBox ID="TxtLastName" placeholder="Please enter your Last name" CssClass="form-control form-control-rounded" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtLastName" placeholder="Please enter your Last name" CssClass="form-control form-control-rounded" runat="server"></asp:TextBox>
                                     <asp:RequiredFieldValidator Display="Dynamic" ErrorMessage="Please enter your last name" CssClass="text-danger font-weight-bold" ControlToValidate="TxtLastName" runat="server" />
                                 </div>
                                 <div class="form-group">
@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Password</label>
-                                    <asp:TextBox ID="TxtPassword" placeholder="Please enter your Password" textmode="Password" CssClass="form-control form-control-rounded" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtPassword" placeholder="Please enter your Password" textmode="Password" CssClass="form-control form-control-rounded" runat="server"></asp:TextBox>
                                     <asp:RequiredFieldValidator Display="Dynamic" ErrorMessage="Please enter your password" CssClass="text-danger font-weight-bold" ControlToValidate="TxtPassword" runat="server" />
                                 </div>
                                 <div class="form-group">
@@ -52,9 +52,17 @@
                                     <asp:TextBox ID="txtConfirmPassword" placeholder="Please confirm your Password" CssClass="form-control form-control-rounded" runat="server"></asp:TextBox>
                                     <asp:RequiredFieldValidator Display="Dynamic" ErrorMessage="Please confirm your password" CssClass="text-danger font-weight-bold" ControlToValidate="txtConfirmPassword" runat="server" />
                                 </div>
-                                <asp:LinkButton cssclass="btn btn-rounded btn-primary btn-block mt-2" runat="server">Sign Up</asp:LinkButton>
-                                <%--<button class="btn btn-rounded btn-primary btn-block mt-2">Sign Up</button>--%>
+                                <div class="col-md-6 form-group mb-3">
+                                <label for="picker1">Profile Picture</label>
+                                <asp:FileUpload runat="server" ID="fuUserPicture" CssClass="form-control" />
+                                <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" ErrorMessage="Please upload picture" CssClass="text-danger font-weight-bold" ControlToValidate="fuUserPicture" runat="server" />
+                                <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" ErrorMessage="Please upload picture" CssClass="text-danger font-weight-bold" ControlToValidate="fuUserPicture" runat="server" />
 
+                            </div>
+                                <asp:LinkButton ID="lnkSubmit" cssclass="btn btn-rounded btn-primary btn-block mt-2" OnClick="lnkSubmit_Click" runat="server">Sign Up</asp:LinkButton>
+                                <%--<button class="btn btn-rounded btn-primary btn-block mt-2">Sign Up</button>--%>
+                                <asp:Label Text="" ID="lblSuccess" runat="server" />
+                                <asp:Label Text="" ID="lblError" runat="server" />
 
 
                                 <div class="mt-3 text-center">
