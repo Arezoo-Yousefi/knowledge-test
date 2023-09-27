@@ -15,17 +15,17 @@
                 <div class="card mb-4">
                     <div class="card-body">
                         <div class="col-md-12 form-group mb-3">
-                            <label for="phone">Test Type</label>
-                            <asp:DropDownList ID="ddlTestType" runat="server" CssClass="form-control" OnTextChanged="ddlTestType_TextChanged" AutoPostBack="true">
+                            <label for="phone">Allocated Tests</label>
+                            <asp:DropDownList ID="ddlAllocated" runat="server" CssClass="form-control">
                             </asp:DropDownList>
-                            <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" ErrorMessage="Please select type of the test" CssClass="text-danger font-weight-bold" ControlToValidate="ddlTestType" runat="server" />
+                            <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" ErrorMessage="Please select Your Prefered test" CssClass="text-danger font-weight-bold" ControlToValidate="ddlAllocated" runat="server" />
                         </div>
-                        <div class="col-md-12 form-group mb-3">
+                        <%--<div class="col-md-12 form-group mb-3">
                             <label for="phone">Language</label>
                             <asp:DropDownList ID="ddlLanguage" runat="server" CssClass="form-control">
                             </asp:DropDownList>
                             <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" ErrorMessage="Please select Language" CssClass="text-danger font-weight-bold" ControlToValidate="ddlLanguage" runat="server" />
-                        </div>
+                        </div>--%>
                         <%--<button class="btn btn-primary float-right">Submit</button>--%>
                         <asp:LinkButton ID="lnkSubmitTestType" CssClass="btn btn-primary ripple m-1 float-right" runat="server" OnClick="lnkSubmitTestType_Click">Submit</asp:LinkButton>
                         <asp:LinkButton CssClass="btn btn-dark  m-1 float-right " runat="server" CausesValidation="false" PostBackUrl="~/dashboard.aspx">Cancel</asp:LinkButton>
@@ -40,7 +40,8 @@
                 <div class="card mb-4">
                     <div id="questionBox2" class="card-body">
                         <div class="card-title mb-3">
-                            <asp:Label Text="Question 1" ID="lblQuestion" runat="server" />
+                            <asp:Label Text="" ID="lblQuestion" runat="server" />
+                            
                         </div>
                         <div class="row">
                             <div class="col-md-4 form-group mb-3 border">
@@ -68,9 +69,11 @@
                             <asp:Label Text="Result" CssClass="" ID="lblResult" runat="server" />
                         </div>
                        <div class="card-title mb-3">
-                            <asp:Label Text="" ID="lblCorrectAnswer" runat="server" /> / <asp:Label Text="" ID="lblQuestionNumber" runat="server" />
+                            <asp:Label  ID="lblCorrectAnswer" runat="server" /> / <asp:Label  ID="lblQuestionNumber" runat="server" />
                         </div>
-                        <asp:LinkButton ID="lblFinish" CssClass="btn btn-primary ripple m-1 float-right" runat="server" OnClick="lblFinish_Click" Visible="false">Finish</asp:LinkButton>
+                        <asp:Label ID="lblResult1" cssClass="alert alert-card alert-success" Text="" runat="server" />
+                        <asp:Label ID="lblError1" cssClass="alert alert-card alert-danger" Text="" runat="server" />
+                        <asp:LinkButton ID="lblFinish" CssClass="btn btn-primary ripple m-1 float-right" runat="server" OnClick="lblFinish_Click">Finish</asp:LinkButton>
 
                     </div>
                 </div>

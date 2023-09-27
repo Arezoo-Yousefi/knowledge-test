@@ -77,10 +77,10 @@
     <Content Include="assets\images\drivers-licensesmall-7385051_1280.jpg" />
     <Content Include="assets\images\IMG_0032.JPG" />
     <Content Include="assets\images\stop-sign-37020_1280.png" />
+    <Content Include="assets\images\translate.png" />
     <Content Include="changepassword.aspx" />
     <Content Include="edittestmaster.aspx" />
     <Content Include="addtestmaster.aspx" />
-    <Content Include="addtesttype.aspx" />
     <Content Include="addUser.aspx" />
     <Content Include="edittesttype.aspx" />
     <Content Include="edituser.aspx" />
@@ -443,6 +443,7 @@
     <Content Include="logout.aspx" />
     <Content Include="myprofile.aspx" />
     <Content Include="signout.aspx" />
+    <Content Include="translate.aspx" />
     <Content Include="userlist.aspx" />
     <Content Include="reports.aspx" />
     <Content Include="signup.aspx" />
@@ -511,6 +512,7 @@
     <Compile Include="changepassword.aspx.designer.cs">
       <DependentUpon>changepassword.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Crypto.cs" />
     <Compile Include="edittestmaster.aspx.cs">
       <DependentUpon>edittestmaster.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -524,13 +526,6 @@
     </Compile>
     <Compile Include="addtestmaster.aspx.designer.cs">
       <DependentUpon>addtestmaster.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="addtesttype.aspx.cs">
-      <DependentUpon>addtesttype.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="addtesttype.aspx.designer.cs">
-      <DependentUpon>addtesttype.aspx</DependentUpon>
     </Compile>
     <Compile Include="addUser.aspx.cs">
       <DependentUpon>addUser.aspx</DependentUpon>
@@ -574,6 +569,7 @@
     <Compile Include="dashboard.aspx.designer.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Email.cs" />
     <Compile Include="logout.aspx.cs">
       <DependentUpon>logout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -608,6 +604,13 @@
     </Compile>
     <Compile Include="Site3.Master.designer.cs">
       <DependentUpon>Site3.Master</DependentUpon>
+    </Compile>
+    <Compile Include="translate.aspx.cs">
+      <DependentUpon>translate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="translate.aspx.designer.cs">
+      <DependentUpon>translate.aspx</DependentUpon>
     </Compile>
     <Compile Include="userlist.aspx.cs">
       <DependentUpon>userlist.aspx</DependentUpon>

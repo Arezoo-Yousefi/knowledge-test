@@ -33,7 +33,7 @@
                                     <asp:LinkButton ID="likButton" CssClass="btn btn-primary" runat="server" OnClick="likButton_Click">Search</asp:LinkButton>
                                 </div>
                                 <div class="col-sm-6">
-                                    <asp:LinkButton ID="likAddTestType" CssClass="btn btn-success float-right m-1" runat="server" PostBackUrl="~/addtesttype.aspx">Add Test Type</asp:LinkButton>
+                                    <asp:LinkButton ID="likAddTestType" CssClass="btn btn-success float-right m-1" runat="server" PostBackUrl="~/edittesttype.aspx">Add Test Type</asp:LinkButton>
                                 </div>
                             </div>
                             <div class="table-responsive">
@@ -42,7 +42,8 @@
                                     <Columns>
                                         <asp:BoundField HeaderText="ID" DataField="ID" />
                                         <asp:BoundField HeaderText="Test Type" DataField="TestType" />
-                                        <asp:BoundField HeaderText="Language" DataField="Language" />
+                                        <asp:BoundField HeaderText="Number of Questions" DataField="NumberOfQuestions" />
+                                        <asp:BoundField HeaderText="Correct To Pass" DataField="CorrectToPass" />
                                         <asp:BoundField HeaderText="Created On" DataField="CreatedOn" />
                                         <asp:TemplateField HeaderText="Status">
                                             <ItemTemplate>

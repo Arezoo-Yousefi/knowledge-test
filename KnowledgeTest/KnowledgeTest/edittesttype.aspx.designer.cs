@@ -24,13 +24,22 @@ namespace KnowledgeTest
         protected global::System.Web.UI.WebControls.TextBox txtTestType;
 
         /// <summary>
-        /// txtLanguage control.
+        /// txtNumberOfQuestions control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLanguage;
+        protected global::System.Web.UI.WebControls.TextBox txtNumberOfQuestions;
+
+        /// <summary>
+        /// txtCorrectAnswer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCorrectAnswer;
 
         /// <summary>
         /// lnkSubmit control.

@@ -49,12 +49,11 @@ namespace KnowledgeTest
                 x = $"(Status = '{ddlStatus.SelectedValue}') And ";
             }
 
-            strQuerry = $"SELECT [ID],[TestType],[Language]," +
-            $"Case When Status = 1 Then 'Active' Else 'Deleted' End Status,Format(CreatedOn, 'MMM dd yyyy') CreatedOn " +
-            $"FROM [TestType]" +
-            $"Where {x} ([TestType] like " +
-            $"'%{strSearchText}%' or [Language] Like '%{strSearchText}%')";
-            //}
+            strQuerry = $"SELECT [ID],[TestType], [NumberOfQuestions], [CorrectToPass], " +
+            $"Case When Status = 1 Then 'Active' Else 'Deactivated' End Status,Format(CreatedOn, 'MMM dd yyyy') CreatedOn " +
+            $"FROM [TestTypes]" +
+            $"Where {x} [TestType] like '%{strSearchText}%'";
+
             DataSet ds = SqlHelper.ExecuteDataset(strConnection, CommandType.Text, strQuerry);
             gvData.DataSource = ds;
 
@@ -73,7 +72,7 @@ namespace KnowledgeTest
         {
             LinkButton objLinkaButton = (LinkButton)sender;
             string strID = objLinkaButton.CommandArgument;
-            string strQuerry = $"Update [TestType] set status = Case When Status = 0 Then 1 Else 0 End Where ID = { strID}";
+            string strQuerry = $"Update [TestTypes] set status = Case When Status = 0 Then 1 Else 0 End Where ID = { strID}";
             int result = SqlHelper.ExecuteNonQuery(strConnection, CommandType.Text, strQuerry);
             if (result > -1)
             {

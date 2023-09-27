@@ -21,7 +21,7 @@ namespace KnowledgeTest
             {
                 
                 FillDropDownField();
-                ddlTestType_TextChanged(null, null);
+                //ddlTestType_TextChanged(null, null);
             }
         }
 
@@ -33,34 +33,21 @@ namespace KnowledgeTest
                 string strQuerry = string.Empty;
                 string strFileName = string.Empty;
                 //string strConnection = ConfigurationManager.AppSettings["sqlConnection"];
-                strQuerry = $" Select Distinct TestType From TestType;";
+                strQuerry = $" Select ID, TestType From TestTypes Order By TestType;" +
+                    $"Select ID, LanguageName From Languages Order By LanguageName";
                 DataSet ds = SqlHelper.ExecuteDataset(strConnection, CommandType.Text, strQuerry);
 
 
                 ddlTestType.DataTextField = "TestType";
-                ddlTestType.DataValueField = "TestType";
+                ddlTestType.DataValueField = "ID";
                 ddlTestType.DataSource = ds.Tables[0];
                 ddlTestType.DataBind();
                 ddlTestType.Items.Insert(0, new ListItem("Select", "0"));
-            }
-            catch (Exception ee)
-            {
-                lblError.Text = ee.Message;
-            }
-        }
 
-        protected void ddlTestType_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                string strQuerry = string.Empty;
-                string strFileName = string.Empty;
-                //string strConnection = ConfigurationManager.AppSettings["sqlConnection"];
-                strQuerry = $" Select  ID, Language From TestType where TestType = '{ddlTestType.SelectedValue}';";
-                DataSet ds = SqlHelper.ExecuteDataset(strConnection, CommandType.Text, strQuerry);
-                ddlLanguage.DataTextField = "Language";
+
+                ddlLanguage.DataTextField = "LanguageName";
                 ddlLanguage.DataValueField = "ID";
-                ddlLanguage.DataSource = ds.Tables[0];
+                ddlLanguage.DataSource = ds.Tables[1];
                 ddlLanguage.DataBind();
                 ddlLanguage.Items.Insert(0, new ListItem("Select", "0"));
             }
@@ -69,6 +56,27 @@ namespace KnowledgeTest
                 lblError.Text = ee.Message;
             }
         }
+
+        //protected void ddlTestType_TextChanged(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        string strQuerry = string.Empty;
+        //        string strFileName = string.Empty;
+        //        //string strConnection = ConfigurationManager.AppSettings["sqlConnection"];
+        //        strQuerry = $" Select  ID, Language From TestType where TestType = '{ddlTestType.SelectedValue}';";
+        //        DataSet ds = SqlHelper.ExecuteDataset(strConnection, CommandType.Text, strQuerry);
+        //        ddlLanguage.DataTextField = "Language";
+        //        ddlLanguage.DataValueField = "ID";
+        //        ddlLanguage.DataSource = ds.Tables[0];
+        //        ddlLanguage.DataBind();
+        //        ddlLanguage.Items.Insert(0, new ListItem("Select", "0"));
+        //    }
+        //    catch (Exception ee)
+        //    {
+        //        lblError.Text = ee.Message;
+        //    }
+        //}
         protected void lnkSubmit_Click(object sender, EventArgs e)
         {
             try
@@ -76,7 +84,7 @@ namespace KnowledgeTest
                 string strQuerry = string.Empty;
                 string strFileName = string.Empty;
                 
-                strQuerry = $"Select ID from TestMaster Where Question = '{txtQuestion.Text.Trim()}'";
+                strQuerry = $"Select ID from TranslatedQuestions Where Question = '{txtQuestion.Text.Trim()}'";
                 int intExists = Convert.ToInt32(SqlHelper.ExecuteScalar(strConnection, CommandType.Text, strQuerry));
                 if (intExists > 0)
                 {
@@ -93,11 +101,17 @@ namespace KnowledgeTest
                         fuQuestionImage.SaveAs(strPath);
                     }
 
-                    strQuerry = $"INSERT INTO TestMaster(TestTypeID, Question, QuestionImage, AnswerA, AnswerB, AnswerC" +
-                        $", AnswerD, CorrectAnswer)VALUES" +
-                        $"((Select ID from TestType where TestType.TestType = '{ddlTestType.SelectedItem}' And TestType.Language = '{ddlLanguage.SelectedItem}')" +
-                        $",N'{txtQuestion.Text}','{strFileName}',N'{txtAnswerA.Text}',N'{txtAnswerB.Text}', N'{txtAnswerC.Text}', N'{txtAnswerD.Text}'" +
-                        $",'{ddlCorrectAnswer.SelectedValue}')";
+                    strQuerry = $"INSERT INTO TestMaster" +
+                        $"(TestTypeID, QuestionImage," +
+                        $" CorrectAnswer)VALUES" +
+                        $"({ddlTestType.SelectedValue}, '{strFileName}', '{ddlCorrectAnswer.SelectedValue}');" +
+                        $" Insert INTO TranslatedQuestions" +
+                        $" (TestMasterID, LanguageID, Question, AnswerA, AnswerB, AnswerC, AnswerD) " +
+                        $"Values (Scope_Identity(), 1, N'{txtQuestion.Text}',N'{txtAnswerA.Text}',N'{txtAnswerB.Text}', N'{txtAnswerC.Text}', N'{txtAnswerD.Text}')";
+
+                        //And TestType.Language = '{ddlLanguage.SelectedItem}')" +
+                        //$",N'{txtQuestion.Text}',,N'{txtAnswerA.Text}',N'{txtAnswerB.Text}', N'{txtAnswerC.Text}', N'{txtAnswerD.Text}'" +
+                        //$",)";
                     int result = SqlHelper.ExecuteNonQuery(strConnection, CommandType.Text, strQuerry);
                     if (result > -1)
                     {

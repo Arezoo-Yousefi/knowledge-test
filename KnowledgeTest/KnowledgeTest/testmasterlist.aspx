@@ -30,9 +30,15 @@
                                 </div>
                                 <div class="col-sm-2">
                                     <asp:DropDownList ID="ddlStatus" CssClass="form-control" runat="server">
-                                        <asp:ListItem selected="True" Text="All" Value="2" />
+                                        <asp:ListItem Text="Select" Value="0"/>
                                         <asp:ListItem Text="Active" Value="1"/>
-                                        <asp:ListItem Text="Deleted" value="0"/>
+                                        <asp:ListItem Text="Deactivated" Value="2"/>
+                                        <%--<asp:ListItem selected="True" Text="All" Value="5" />
+                                        <asp:ListItem Text="Not Started" Value="0"/>
+                                        <asp:ListItem Text="In Progress" value="1"/>
+                                        <asp:ListItem Text="Passed" value="2"/>
+                                        <asp:ListItem Text="Failed" value="3"/>
+                                        <asp:ListItem Text="Deactivated" value="4"/>--%>
                                     </asp:DropDownList>
                                 </div>
                                 <div class="col-sm-2">
@@ -44,11 +50,11 @@
                             </div>
                             <div class="table-responsive">
                                 <asp:Label Text="" CssClass="alert-success" runat="server" ID="lblresult" />
-                                <asp:GridView AutoGenerateColumns="false" runat="server" ID="gvData" CssClass="table table-striped table-bordered">
+                                <asp:GridView AutoGenerateColumns="false" runat="server" ID="gvData" OnRowDataBound="gvData_RowDataBound" CssClass="table table-striped table-bordered">
                                     <Columns>
                                         <asp:BoundField HeaderText="ID" DataField="ID" />
                                         <asp:BoundField HeaderText="Test Type" DataField="TestType" />
-                                        <asp:BoundField HeaderText="Language" DataField="Language" />
+                                        <%--<asp:BoundField HeaderText="Language" DataField="Language" />--%>
                                         <asp:BoundField HeaderText="Question" DataField="Question" />
                                         <asp:TemplateField HeaderText="Question Image">
                                             <ItemTemplate>
@@ -62,6 +68,13 @@
                                         <asp:BoundField HeaderText="Answer (C)" DataField="AnswerC" />
                                         <asp:BoundField HeaderText="Answer (D)" DataField="AnswerD" />
                                         <asp:BoundField HeaderText="Correct Answer" DataField="CorrectAnswer" />
+
+                                        <asp:TemplateField HeaderText="Translated To">
+                                            <ItemTemplate>
+                                                <asp:CheckBoxList ID="CheckBoxList1" RepeatDirection="Horizontal" runat="server"></asp:CheckBoxList>   
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
                                         <asp:BoundField HeaderText="Created On" DataField="CreatedOn" />
                                         <asp:TemplateField HeaderText="Status">
                                             <ItemTemplate>
@@ -73,6 +86,11 @@
                                             <ItemTemplate>
                                                 <asp:LinkButton Text="Action" CommandArgument='<%#Eval("ID")%>' CssClass="text-success mr-2" runat="server" OnClick="Edit_Click" ID="likEdit">
                                                     <i class="nav-icon i-Pen-2 font-weight-bold"></i>
+                                                </asp:LinkButton>
+                                            
+                                                <asp:LinkButton Text="Action" CommandArgument='<%#Eval("ID")%>' CssClass="text-success mr-2" runat="server" onClick="lnkTranslate_Click" ID="lnkTranslate">
+                                                    <%--<i class="nav-icon  font-weight-bold"></i>--%>
+                                                    <img class="nav-icon  font-weight-bold" width="20px" src="assets/images/translate.png" />
                                                 </asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>

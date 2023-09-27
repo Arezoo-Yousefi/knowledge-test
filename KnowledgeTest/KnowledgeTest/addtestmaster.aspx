@@ -19,7 +19,7 @@
                         <div class="row">
                             <div class="col-md-6 form-group mb-3">
                                 <label for="picker1">Test Type</label>
-                                <asp:DropDownList runat="server" ID="ddlTestType" CssClass="form-control" AutoPostBack="true" OnTextChanged="ddlTestType_TextChanged">
+                                <asp:DropDownList runat="server" ID="ddlTestType" CssClass="form-control">
                                     
                                 </asp:DropDownList>
                                 <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" ErrorMessage="Please select the type of the test" CssClass="text-danger font-weight-bold" ControlToValidate="ddlTestType" runat="server" />

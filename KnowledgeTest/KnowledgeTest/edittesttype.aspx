@@ -14,24 +14,32 @@
                 <div class="card mb-4">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-6 form-group mb-3">
+                            <div class="col-md-4 form-group mb-3">
                                 <label for="picker1">Test Type</label>
                                 <asp:textbox runat="server" ID="txtTestType" CssClass="form-control">
                                 </asp:textbox>
                                 <asp:RequiredFieldValidator Display="Dynamic" ErrorMessage="Please select the type of the test" CssClass="text-danger font-weight-bold" ControlToValidate="txtTestType" runat="server" />
                             </div>
-                            <div class="col-md-6 form-group mb-3">
-                                <label for="picker1">Language</label>
-                                <asp:textbox runat="server" ID="txtLanguage" CssClass="form-control">
+                            <div class="col-md-4 form-group mb-3">
+                                <label for="picker1">Number Of Questions</label>
+                                <asp:textbox runat="server" ID="txtNumberOfQuestions" CssClass="form-control">
                                 </asp:textbox>
-                                <asp:RequiredFieldValidator Display="Dynamic" ErrorMessage="Please select the language" CssClass="text-danger font-weight-bold" ControlToValidate="txtLanguage" runat="server" />
+                                <asp:RequiredFieldValidator Display="Dynamic" ErrorMessage="Please select number of questions" CssClass="text-danger font-weight-bold" ControlToValidate="txtNumberOfQuestions" runat="server" />
+                            </div>
+                            <div class="col-md-4 form-group mb-3">
+                                <label for="picker1">Number Of Correct Answer To PASS</label>
+                                <asp:textbox runat="server" ID="txtCorrectAnswer" CssClass="form-control">
+                                </asp:textbox>
+                                <asp:RequiredFieldValidator Display="Dynamic" ErrorMessage="Please select number of questions" CssClass="text-danger font-weight-bold" ControlToValidate="txtCorrectAnswer" runat="server" />
                             </div>
                             <div class="col-md-12">
 
                                 <%--<button class="btn btn-primary">Submit</button>--%>
+                                <asp:LinkButton CssClass="btn btn-primary ripple m-1 float-right" runat="server" ID="lnkSubmit" OnClick="lnkSubmit_Click">Submit</asp:LinkButton>
                                 <asp:LinkButton CssClass="btn btn-dark  m-1 float-right " runat="server" CausesValidation="false" PostBackUrl="~/testtypelist.aspx">Cancel</asp:LinkButton>
                                 <%--<button class="btn btn-primary float-right">Submit</button>--%>
-                                <asp:LinkButton CssClass="btn btn-primary ripple m-1 float-right" runat="server" ID="lnkSubmit" OnClick="lnkSubmit_Click">Submit</asp:LinkButton>
+                                
+                                
                                 <asp:Label Text="" CssClass="alert-danger" runat="server" ID="lblError" />
                                 <asp:Label Text="" CssClass="alert-success" runat="server" ID="lblResult" />
                             </div>

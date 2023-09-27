@@ -21,11 +21,11 @@ namespace KnowledgeTest
 
             lblSuccess.Text = string.Empty;
             lblError.Text = string.Empty;
+            
             if (!IsPostBack)
             {
-                FillData();
                 FillDropDownField();
-                ddlTestType_TextChanged(null,null);
+                FillData();
             }
         }
 
@@ -37,11 +37,13 @@ namespace KnowledgeTest
                 string strQuerry = string.Empty;
                 string strFileName = string.Empty;
                 
-                strQuerry = $"Select at.ID, u.FirstName + ' ' +u.LastName Name, tt.TestType, tt.Language," +
-                    $" Case When at.Status = 1 Then 'Active' Else 'Deleted' End Status,Format(at.CreatedOn, 'MMM dd yyyy') CreatedOn" +
-                    $" FROM [AllocateTest] at" +
+                strQuerry = $"Select at.ID, u.FirstName + ' ' +u.LastName Name, tt.TestType, l.LanguageName," +
+                    $" Case When at.Status = 0 Then 'Not Started' When at.Status = 1 Then 'In Progress' When at.Status = 2 Then 'Passed' When at.Status = 3 Then 'Failed' Else 'Deactivated' End Status," +
+                    $"Format(at.CreatedOn, 'MMM dd yyyy') CreatedOn, Format(at.StartTime, 'MMM dd yyyy hh:mm') StartTime " +
+                    $" FROM [AllocatedTests] at" +
                     $" inner join Users u on u.ID = at.UserID" +
-                    $" inner join TestType tt on tt.ID = at.TestTypeID Order By at.ID Desc";
+                    $" inner join TestTypes tt on tt.ID = at.TestTypeID " +
+                    $"inner join Languages l On L.ID = at.LanguageID Order By at.ID Desc";
                 DataSet ds = SqlHelper.ExecuteDataset(strConnection, CommandType.Text, strQuerry);
                 gvData.DataSource = ds.Tables[0];
                 gvData.DataBind();
@@ -60,7 +62,8 @@ namespace KnowledgeTest
                 string strFileName = string.Empty;
                 //string strConnection = ConfigurationManager.AppSettings["sqlConnection"];
                 strQuerry = $"Select ID, FirstName+' '+LastName as Name from Users where Status = 1 Order By FirstName;" +
-                    $" Select Distinct TestType From TestType;";
+                    $" Select ID, TestType From TestTypes Order by TestType;" +
+                    $" Select ID, LanguageName from Languages order by LanguageName ";
                 DataSet ds = SqlHelper.ExecuteDataset(strConnection, CommandType.Text, strQuerry);
                 ddlUser.DataTextField = "Name";
                 ddlUser.DataValueField = "ID";
@@ -69,10 +72,16 @@ namespace KnowledgeTest
                 ddlUser.Items.Insert(0, new ListItem("Select", "0"));
 
                 ddlTestType.DataTextField = "TestType";
-                ddlTestType.DataValueField = "TestType";
+                ddlTestType.DataValueField = "ID";
                 ddlTestType.DataSource = ds.Tables[1];
                 ddlTestType.DataBind();
                 ddlTestType.Items.Insert(0, new ListItem("Select", "0"));
+
+                ddlLanguage.DataTextField = "LanguageName";
+                ddlLanguage.DataValueField = "ID";
+                ddlLanguage.DataSource = ds.Tables[2];
+                ddlLanguage.DataBind();
+                ddlLanguage.Items.Insert(0, new ListItem("Select", "0"));
             }
             catch (Exception ee)
             {
@@ -80,33 +89,14 @@ namespace KnowledgeTest
             }
         }
 
-        protected void ddlTestType_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                string strQuerry = string.Empty;
-                string strFileName = string.Empty;
-                //string strConnection = ConfigurationManager.AppSettings["sqlConnection"];
-                strQuerry = $" Select  ID, Language From TestType where TestType = '{ddlTestType.SelectedValue}';";
-                DataSet ds = SqlHelper.ExecuteDataset(strConnection, CommandType.Text, strQuerry);
-                ddlLanguage.DataTextField = "Language";
-                ddlLanguage.DataValueField = "ID";
-                ddlLanguage.DataSource = ds.Tables[0];
-                ddlLanguage.DataBind();
-                ddlLanguage.Items.Insert(0, new ListItem("Select", "0"));
-            }
-            catch (Exception ee)
-            {
-                lblError.Text = ee.Message;
-            }
-        }
 
         protected void lnkSubmit_Click(object sender, EventArgs e)
         {
             string strQuerry = string.Empty;
             string strFileName = string.Empty;
             //string strConnection = ConfigurationManager.AppSettings["sqlConnection"];
-            strQuerry = $"Select ID from AllocateTest Where (UserID = {ddlUser.SelectedValue} And TestTypeId = {ddlLanguage.SelectedValue})";
+            strQuerry = $"Select ID from AllocatedTests " +
+                $"Where (UserID = {ddlUser.SelectedValue} And TestTypeId = {ddlTestType.SelectedValue} And (Status = 0 OR Status = 1))";
             DataSet ds = SqlHelper.ExecuteDataset(strConnection, CommandType.Text, strQuerry);
             if (ds.Tables[0].Rows.Count > 0)
             {
@@ -114,12 +104,24 @@ namespace KnowledgeTest
             }
             else
             {
-                strQuerry = $"Insert into AllocateTest (UserID, TestTypeId) values ({ddlUser.SelectedValue}, {ddlLanguage.SelectedValue})";
+                strQuerry = $"SELECT NumberOfQuestions " +
+                    $"From TestTypes " +
+                    $"Where ID = {ddlTestType.SelectedValue}";
+                int numberOfQuestions = (int)SqlHelper.ExecuteScalar(strConnection, CommandType.Text, strQuerry);
+                strQuerry = $"Insert into AllocatedTests (UserID, TestTypeID, LanguageID, Status) values ({ddlUser.SelectedValue}, {ddlTestType.SelectedValue}, {ddlLanguage.SelectedValue}, 0);";
+                strQuerry += $"INSERT INTO AllocatedTestQuestions (AllocatedTestID, TestMasterID) " +
+                    $"Select Top {numberOfQuestions} Scope_Identity(), tm.ID " +
+                    $"From TestMaster tm " +
+                    $"Inner Join TranslatedQuestions tq On tq.TestMasterID = tm.ID And tq.LanguageID = {ddlLanguage.SelectedValue} " +
+                    $"Order By NewID()";
                 int result = SqlHelper.ExecuteNonQuery(strConnection, CommandType.Text, strQuerry);
                 if (result > -1)
                 {
                     lblSuccess.Text = "Data has been saved successfully";
                     FillData();
+                    ddlTestType.SelectedValue = "0";
+                    ddlLanguage.SelectedValue = "0";
+                    ddlUser.SelectedValue = "0";
                 }
                 else
                 {
@@ -130,18 +132,18 @@ namespace KnowledgeTest
        
 
      
-        protected void likDelete_Click(object sender, EventArgs e)
-        {
-            LinkButton objLinkButton = (LinkButton)sender;
-            string strID = objLinkButton.CommandArgument;
-            string strQuerry = $"Update AllocateTest set status = Case When Status = 0 Then 1 Else 0 End Where ID = {strID}";
-            int result = SqlHelper.ExecuteNonQuery(strConnection, CommandType.Text, strQuerry);
-            if (result > -1)
-            {
-                lblresult.Text = "Status has been changed successfully";
-                FillData();
-            }
-        }
+        //protected void likDelete_Click(object sender, EventArgs e)
+        //{
+        //    LinkButton objLinkButton = (LinkButton)sender;
+        //    string strID = objLinkButton.CommandArgument;
+        //    string strQuerry = $"Update AllocateTest set status = Case When Status = 0 Then 1 Else 0 End Where ID = {strID}";
+        //    int result = SqlHelper.ExecuteNonQuery(strConnection, CommandType.Text, strQuerry);
+        //    if (result > -1)
+        //    {
+        //        lblresult.Text = "Status has been changed successfully";
+        //        FillData();
+        //    }
+        //}
 
         
         protected void likEdit_Click(object sender, EventArgs e)
@@ -150,15 +152,13 @@ namespace KnowledgeTest
             lblresult.Text = string.Empty;
             LinkButton objLinkButton = (LinkButton)sender;
             string strID = objLinkButton.CommandArgument;
-            string strQuerry = $"Select at.ID, at.UserID, at.TestTypeID, tt.TestType " +
-                $"from AllocateTest at " +
-                $"inner join TestType tt on tt.ID=at.TestTypeID " +
+            string strQuerry = $"Select at.ID, at.UserID, at.TestTypeID, at.LanguageID " +
+                $"from AllocatedTests at " +
                 $"Where at.ID = {strID}";
             DataSet ds = SqlHelper.ExecuteDataset(strConnection, CommandType.Text, strQuerry);
             ddlUser.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["UserID"]);
-            ddlTestType.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["TestType"]);
-            ddlTestType_TextChanged(null,null);
-            ddlLanguage.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["TestTypeID"]);
+            ddlTestType.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["TestTypeID"]);
+            ddlLanguage.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["LanguageID"]);
             lnkSubmit.Visible = false;
             lnkUpdate.Visible = true;
             ViewState[ID] = strID;
@@ -173,7 +173,7 @@ namespace KnowledgeTest
                 lblresult.Text = string.Empty;
                 string strQuerry = string.Empty;
                 string strFileName = string.Empty;
-                strQuerry = $"Select ID from AllocateTest Where (UserID = {ddlUser.SelectedValue} And TestTypeId = {ddlLanguage.SelectedValue} And ID <> {Convert.ToInt32(ViewState[ID])})";
+                strQuerry = $"Select ID from AllocatedTests Where (UserID = {ddlUser.SelectedValue} And TestTypeID = {ddlTestType.SelectedValue} And ID <> {Convert.ToInt32(ViewState[ID])})";
 
                 //strQuerry = $"Select at.ID, at.UserID, at.TestTypeID, tt.TestType " +
                 //$"from AllocateTest at " +
@@ -187,7 +187,8 @@ namespace KnowledgeTest
                 }
                 else
                 {
-                    strQuerry = $"Update AllocateTest Set UserID = {ddlUser.SelectedValue}, TestTypeID = {ddlLanguage.SelectedValue} Where ID = {Convert.ToInt32(ViewState[ID])}";
+                    strQuerry = $"Update AllocatedTests Set UserID = {ddlUser.SelectedValue}, TestTypeID = {ddlTestType.SelectedValue}, LanguageID = {ddlLanguage.SelectedValue}" +
+                        $" Where ID = {Convert.ToInt32(ViewState[ID])}";
                     int result = SqlHelper.ExecuteNonQuery(strConnection, CommandType.Text, strQuerry);
                     if (result> -1)
                     {

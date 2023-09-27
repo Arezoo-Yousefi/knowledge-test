@@ -4,6 +4,8 @@ using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Data;
 using Microsoft.ApplicationBlocks.Data;
+using System.Web.UI;
+
 namespace KnowledgeTest
 {
     public partial class testmasterlist : System.Web.UI.Page
@@ -24,31 +26,24 @@ namespace KnowledgeTest
         {
             string strSearchText = txtSearch.Text.Trim();
             string strQuerry = string.Empty;
-            //if(ddlStatus.SelectedValue == "2")
-            //{
-            //    strQuerry = $"SELECT [ID],[FirstName],[LastName],[EmailAddress],[Password],[Phone],[UserType],[UserPicture]," +
-            //    $"Case When Status = 1 Then 'Active' Else 'Deleted' End Status,[CreatedOn]" +
-            //    $"FROM [Users] " +
-            //    $"Where ([FirstName] like " +
-            //    $"'%{strSearchText}%' or [LastName] Like '%{strSearchText}%'or [EmailAddress] like '%{strSearchText}%'or [UserType] Like '%{strSearchText}%'" +
-            //    $" or [Phone] like '%{strSearchText}%')";
-            //}
-            //else
-            //{
             string x = string.Empty;
-            if (ddlStatus.SelectedValue != "2")
+            if (ddlStatus.SelectedValue != "0")
             {
                 x = $"(Status = '{ddlStatus.SelectedValue}') And ";
             }
 
-            strQuerry = $"SELECT [ID],(Select TestType from TestType where ID = TestTypeID)[TestType], (Select Language from TestType where ID = TestTypeID)[Language],[Question],[QuestionImage],[AnswerA],[AnswerB],[AnswerC],[AnswerD],[CorrectAnswer]," +
-            $"Case When Status = 1 Then 'Active' Else 'Deleted' End Status,Format(CreatedOn, 'MMM dd yyyy') CreatedOn " +
-            $"FROM [TestMaster] " +
-            $"Where {x} ([Question] like " +
+            strQuerry = $"SELECT tm.ID, tt.[TestType] , " +
+                $"[Question],[QuestionImage],[AnswerA],[AnswerB],[AnswerC],[AnswerD],[CorrectAnswer]," +
+            $"Case When tm.Status = 1 Then 'Active' Else 'Deactivated' End Status," +
+            $"Format(tm.CreatedOn, 'MMM dd yyyy') CreatedOn " +
+            $"FROM [TestMaster] tm " +
+            $"inner join TestTypes tt On tt.ID = tm.TestTypeID " +
+            $"inner join TranslatedQuestions tq on tq.TestMasterID = tm.ID And tq.LanguageID = (SELECT ID From Languages where IsBasedLanguage = 1) " +
+            $"Where {x} ([TestType] like '%{strSearchText}%' or [Question] like " +
             $"'%{strSearchText}%' or [AnswerA] Like '%{strSearchText}%' or [AnswerB] like '%{strSearchText}%' or [AnswerC] Like '%{strSearchText}%'" +
             $" or [AnswerD] like '%{strSearchText}%')";
-            //}
-            DataSet ds = SqlHelper.ExecuteDataset(strConnection, CommandType.Text, strQuerry);
+            //$"inner join Language l on l.ID = tm.Lan" +
+             DataSet ds = SqlHelper.ExecuteDataset(strConnection, CommandType.Text, strQuerry);
             gvData.DataSource = ds;
 
             gvData.DataBind();
@@ -79,6 +74,35 @@ namespace KnowledgeTest
         protected void likButton_Click(object sender, EventArgs e)
         {
             FillData();
+        }
+
+        protected void lnkTranslate_Click(object sender, EventArgs e)
+        {
+            LinkButton objLinkButton = (LinkButton)sender;
+            string strID = objLinkButton.CommandArgument;
+            Session["TranslateID"] = strID;
+            Response.Redirect("translate.aspx");
+        }
+
+        protected void gvData_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if(e.Row.RowType == DataControlRowType.DataRow)
+            {
+                CheckBoxList checkBoxList = (CheckBoxList)e.Row.FindControl("CheckBoxList1");
+                int ID = (int)DataBinder.Eval(e.Row.DataItem, "ID");
+                string strQuerry = $"Select LanguageName From TranslatedQuestions tq " +
+                    $"inner join Languages l On l.ID = tq.LanguageID " +
+                    $"Where tq.TestMasterID = {ID} And l.isBasedLanguage <> 1";
+                DataSet ds = SqlHelper.ExecuteDataset(strConnection, CommandType.Text, strQuerry);
+                checkBoxList.DataSource = ds;
+                checkBoxList.DataTextField = "LanguageName";
+                checkBoxList.DataBind();
+                foreach(ListItem item in checkBoxList.Items)
+                {
+                    item.Selected = true;
+                    item.Enabled = false;
+                }
+            }
         }
     }
 }
