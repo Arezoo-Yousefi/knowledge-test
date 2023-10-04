@@ -86,7 +86,7 @@
                                         </asp:TemplateField>--%>
                                         <asp:TemplateField HeaderText="Action">
                                             <ItemTemplate>
-                                                <asp:LinkButton Text="Action" CausesValidation="false" CommandArgument='<%#Eval("ID")%>' CssClass="text-success mr-2" runat="server" OnClick="likEdit_Click" ID="likEdit">
+                                                <asp:LinkButton Text="Action" CausesValidation="false" CommandArgument='<%#Eval("ID")%>' CssClass="text-success mr-2" runat="server" OnClick="likEdit_Click" ID="likEdit" Enabled ='<%#(string)Eval("Status") == "Not Started"%>'>
                                                     <i class="nav-icon i-Pen-2 font-weight-bold"></i>
                                                 </asp:LinkButton>
                                             </ItemTemplate>

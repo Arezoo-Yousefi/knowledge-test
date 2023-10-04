@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mail;
 
-namespace WebApplication6
+namespace KnowledgeTest
 {
-    public class Email
+    public class MyEmail
     {
         public int SendMail(string strSubject, string strTo, string strBody, bool bIsHTML)
         {
@@ -18,7 +18,7 @@ namespace WebApplication6
                 msgMail.To = strTo;
                 msgMail.Cc = "";
                 msgMail.Bcc = "";
-                msgMail.From = "From Email ID";
+                msgMail.From = "areyousefi@gmail.com";
                 msgMail.Subject = strSubject;
                 //check is body is in html format or not
                 if (bIsHTML)
@@ -28,9 +28,9 @@ namespace WebApplication6
                 msgMail.Body = strBody;
 
                 int iAuthenticated = 1;
-                SmtpMail.SmtpServer = "";
-                string sUserName = "";
-                string sPassword = "";
+                SmtpMail.SmtpServer = "in-v3.mailjet.com";
+                string sUserName = "4b1de4fb0cddf42ef6eded7fdbd1bc77";
+                string sPassword = "cce113ff087886e579a7eb35b339655b";
                 string sPortNo = "587";
 
 
@@ -48,7 +48,7 @@ namespace WebApplication6
                 //send mail
                 SmtpMail.Send(msgMail);
                 return 1;
-               
+
             }
             catch (Exception ex)
             {

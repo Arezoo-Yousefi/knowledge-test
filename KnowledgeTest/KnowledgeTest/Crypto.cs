@@ -1,10 +1,9 @@
-﻿using System;
-
-using System.IO;
+﻿using System.IO;
 using System.Text;
 using System.Security.Cryptography;
+using System;
 
-namespace WebApplication6
+namespace KnowledgeTest
 {
     public class Crypto
     {

@@ -39,7 +39,8 @@ namespace KnowledgeTest
                 
                 strQuerry = $"Select at.ID, u.FirstName + ' ' +u.LastName Name, tt.TestType, l.LanguageName," +
                     $" Case When at.Status = 0 Then 'Not Started' When at.Status = 1 Then 'In Progress' When at.Status = 2 Then 'Passed' When at.Status = 3 Then 'Failed' Else 'Deactivated' End Status," +
-                    $"Format(at.CreatedOn, 'MMM dd yyyy') CreatedOn, Format(at.StartTime, 'MMM dd yyyy hh:mm') StartTime " +
+                    $"Format(at.CreatedOn, 'MMM dd yyyy') CreatedOn, Format(at.StartTime, 'MMM dd yyyy hh:mm') StartTime" +
+                    $" " +
                     $" FROM [AllocatedTests] at" +
                     $" inner join Users u on u.ID = at.UserID" +
                     $" inner join TestTypes tt on tt.ID = at.TestTypeID " +
@@ -113,6 +114,7 @@ namespace KnowledgeTest
                     $"Select Top {numberOfQuestions} Scope_Identity(), tm.ID " +
                     $"From TestMaster tm " +
                     $"Inner Join TranslatedQuestions tq On tq.TestMasterID = tm.ID And tq.LanguageID = {ddlLanguage.SelectedValue} " +
+                    $"Where tm.TestTypeID = {ddlTestType.SelectedValue} " +
                     $"Order By NewID()";
                 int result = SqlHelper.ExecuteNonQuery(strConnection, CommandType.Text, strQuerry);
                 if (result > -1)
@@ -152,7 +154,7 @@ namespace KnowledgeTest
             lblresult.Text = string.Empty;
             LinkButton objLinkButton = (LinkButton)sender;
             string strID = objLinkButton.CommandArgument;
-            string strQuerry = $"Select at.ID, at.UserID, at.TestTypeID, at.LanguageID " +
+            string strQuerry = $"Select at.ID, at.UserID, at.TestTypeID, at.LanguageID, at.Status " +
                 $"from AllocatedTests at " +
                 $"Where at.ID = {strID}";
             DataSet ds = SqlHelper.ExecuteDataset(strConnection, CommandType.Text, strQuerry);

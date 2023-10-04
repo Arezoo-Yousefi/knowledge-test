@@ -11,7 +11,9 @@ namespace KnowledgeTest
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+           
+                lblUserName.Text = Convert.ToString(Session["name"]);
+                userDropdown.ImageUrl = Convert.ToString(Session["userPicture"]);
         }
     }
 }

@@ -88,19 +88,29 @@ namespace KnowledgeTest
         {
             if(e.Row.RowType == DataControlRowType.DataRow)
             {
-                CheckBoxList checkBoxList = (CheckBoxList)e.Row.FindControl("CheckBoxList1");
+               
+                //CheckBoxList checkBoxList = (CheckBoxList)e.Row.FindControl("CheckBoxList1");
                 int ID = (int)DataBinder.Eval(e.Row.DataItem, "ID");
                 string strQuerry = $"Select LanguageName From TranslatedQuestions tq " +
                     $"inner join Languages l On l.ID = tq.LanguageID " +
                     $"Where tq.TestMasterID = {ID} And l.isBasedLanguage <> 1";
                 DataSet ds = SqlHelper.ExecuteDataset(strConnection, CommandType.Text, strQuerry);
-                checkBoxList.DataSource = ds;
-                checkBoxList.DataTextField = "LanguageName";
-                checkBoxList.DataBind();
-                foreach(ListItem item in checkBoxList.Items)
+                //checkBoxList.DataSource = ds;
+                //checkBoxList.DataTextField = "LanguageName";
+                //checkBoxList.DataBind();
+                foreach(DataRow r in ds.Tables[0].Rows)
                 {
-                    item.Selected = true;
-                    item.Enabled = false;
+                    //l = new Label();
+                    //l.Text =(string)r["LanguageName"];
+                    CheckBox input1 = new CheckBox();
+                    //input1.Attributes.Add("class", "form-check-input");
+                    input1.Text = (string)r["LanguageName"];
+                    input1.ForeColor = System.Drawing.Color.MediumPurple;
+                    input1.Checked = true;
+                    input1.Enabled = false;
+                    
+                    //l.Controls.Add(input1);
+                    e.Row.Cells[9].Controls.Add(input1);
                 }
             }
         }

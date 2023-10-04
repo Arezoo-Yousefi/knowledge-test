@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="accordion.html" />
+    <Content Include="assets\images\screenshots\favicon.ico" />
     <Content Include="assets\images\1.gif" />
     <Content Include="assets\images\2.gif" />
     <Content Include="assets\images\drivers-license-7385051_1280.jpg" />
@@ -442,6 +443,7 @@
     <Content Include="IMG_0032.JPG" />
     <Content Include="logout.aspx" />
     <Content Include="myprofile.aspx" />
+    <Content Include="reset.aspx" />
     <Content Include="signout.aspx" />
     <Content Include="translate.aspx" />
     <Content Include="userlist.aspx" />
@@ -513,6 +515,7 @@
       <DependentUpon>changepassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="Crypto.cs" />
+    <Compile Include="MyEmail.cs" />
     <Compile Include="edittestmaster.aspx.cs">
       <DependentUpon>edittestmaster.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -569,7 +572,6 @@
     <Compile Include="dashboard.aspx.designer.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Email.cs" />
     <Compile Include="logout.aspx.cs">
       <DependentUpon>logout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -583,6 +585,13 @@
     </Compile>
     <Compile Include="myprofile.aspx.designer.cs">
       <DependentUpon>myprofile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="reset.aspx.cs">
+      <DependentUpon>reset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="reset.aspx.designer.cs">
+      <DependentUpon>reset.aspx</DependentUpon>
     </Compile>
     <Compile Include="signout.aspx.cs">
       <DependentUpon>signout.aspx</DependentUpon>

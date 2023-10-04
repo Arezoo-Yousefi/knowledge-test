@@ -21,16 +21,16 @@
                             <div class="p-4">
 
                                 <h1 class="mb-3 text-18">Forget Password</h1>
-
+                               
                                 <div class="form-group">
                                     <label for="email">Email address</label>
                                     <asp:TextBox ID="txtEmail" CssClass="form-control form-control-rounded" runat="server"></asp:TextBox>
                                     <asp:RequiredFieldValidator Display="Dynamic" ErrorMessage="Please enter an email" CssClass="text-danger font-weight-bold" ControlToValidate="txtEmail" runat="server" />
                                 </div>
-                                <asp:LinkButton  runat="server"  cssclass="btn btn-rounded btn-primary btn-block mt-2">Reset Password</asp:LinkButton>
-                                <%--<button class="btn btn-rounded btn-primary btn-block mt-2">Reset Password</button>--%>
-
-
+                                <asp:LinkButton ID="lnksubmit" cssclass="btn btn-rounded btn-primary btn-block mt-2" OnClick="lnksubmit_Click" runat="server" >Reset Password</asp:LinkButton>
+                                <br/>
+                                <asp:Label ID="lblSuccess" CssClass="alert-success"  runat="server" />
+                                <asp:Label ID="lblError" CssClass="alert-danger"  runat="server" />
 
                                 <div class="mt-3 text-center">
                                     <a href="signin.aspx" class="text-muted"><u>Sign In</u></a>
